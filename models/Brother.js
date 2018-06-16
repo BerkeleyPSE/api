@@ -28,7 +28,7 @@ const BrotherSchema = new Schema({
   year: {
     type: {
       label: String,
-      value: String
+      value: Number
     },
     required: 'You must provide a year.'
   },
@@ -99,5 +99,7 @@ const BrotherSchema = new Schema({
     }
   ]
 });
+
+// TODO: add indices???
 
 mongooseStatic.model('Brother', BrotherSchema);

@@ -19,7 +19,7 @@ router.get(
 // TODO:: create brother
 // TODO: update brother
 // TODO: delete brother
-router.get('/brothers/search');
+router.get('/brothers/filter', catchErrors(brotherController.filterBrothers));
 router.get('brothers/year/:year'); // TODO: create index on this
 router.get('brothers/class/:class'); // TODO: create index on this
 

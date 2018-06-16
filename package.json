@@ -11,7 +11,7 @@
     "node": ">= 8.9.3"
   },
   "scripts": {
-    "prod": "node ./start.js",
+    "start": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
     "dev": "concurrently \"yarn run watch\" \"yarn run assets\"",
     "assets": "webpack -w --display-max-modules 0"

@@ -19,10 +19,23 @@ exports.getBrotherByKey = async (req, res) => {
 };
 
 exports.getBrotherById = async (req, res) => {
-  const brother = await Brother.find({ _id: req.params.id });
+  const brother = await Brother.findById(req.params.id);
   if (h.isNotValid(brother)) {
     res.status(404);
     return;
   }
   res.json({ brother });
+};
+
+exports.filterBrothers = async (req, res) => {
+  const { pseClass, year } = req.query;
+  let search = {};
+  if (h.isValid(pseClass)) search = { ...search, pseClass };
+  if (h.isValid(year)) search = { ...search, year };
+  const brothers = await Brother.find(search).sort({ name: 1 });
+  if (h.isNotValid(brothers)) {
+    res.status(404);
+    return;
+  }
+  res.json({ brothers, count: brothers.length });
 };
