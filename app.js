@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const promisify = require('es6-promisify');
-const flash = require('connect-flash');
 const expressValidator = require('express-validator');
 
 const path = require('path');
@@ -14,7 +13,7 @@ const path = require('path');
 // local
 const routes = require('./routes/index');
 const helpers = require('./helpers');
-// const errorHandlers = require('./handlers/errorHandlers');
+const errorHandlers = require('./handlers/errorHandlers');
 
 // create Express app
 const app = express();
@@ -36,27 +35,23 @@ app.use(expressValidator());
 // populates req.cookies with any cookies that came along with the request
 app.use(cookieParser());
 
-// app.use(
-//   session({
-//     secret: process.env.SECRET,
-//     key: process.env.KEY,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoStore({ mongooseConnection: mongoose.connection })
-//   })
-// );
+app.use(
+  session({
+    secret: process.env.SECRET,
+    key: process.env.KEY,
+    resave: false,
+    saveUninitialized: false
+    // store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
 
 // Passport JS is used to handle logins
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// flash middleware allows us to use req.flash
-// app.use(flash());
-
 // pass variables to templates & all requests
 app.use((req, res, next) => {
   res.locals.h = helpers;
-  // res.locals.flashes = req.flash();
   res.locals.user = req.user || null;
   res.locals.currentPath = req.path;
   next();
@@ -72,16 +67,13 @@ app.use((req, res, next) => {
 app.use('/', routes);
 
 // if that doesn't work, send to a 404 page
-// app.use(errorHandlers.notFound);
-
-// one of our error handlers will see if these errors are just validation errors
-// app.use(errorHandlers.flashValidationErrors);
+app.use(errorHandlers.notFound);
 
 // development error handler
-// if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
+if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 
 // production error handler
-// app.use(errorHandlers.productionErrors);
+app.use(errorHandlers.productionErrors);
 
 // done! export the app!
 module.exports = app;
