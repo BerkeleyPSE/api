@@ -5,6 +5,7 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 // controllers
 const brotherController = require('../controllers/brotherController');
+const fulltimeController = require('../controllers/fulltimeController');
 
 const router = express.Router();
 
@@ -20,7 +21,14 @@ router.get(
 // TODO: update brother
 // TODO: delete brother
 router.get('/brothers/filter', catchErrors(brotherController.filterBrothers));
-router.get('brothers/year/:year'); // TODO: create index on this
-router.get('brothers/class/:class'); // TODO: create index on this
+
+router.get(
+  '/careers/fulltime/all',
+  catchErrors(fulltimeController.getAllFulltimes)
+);
+router.get(
+  '/careers/fulltime/filter',
+  catchErrors(fulltimeController.filterFulltimes)
+);
 
 module.exports = router;

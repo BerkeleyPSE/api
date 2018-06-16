@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const h = require('../helpers');
 const mongooseStatic = require('../databases/static');
 const Brother = mongooseStatic.model('Brother');
@@ -11,31 +12,22 @@ exports.getAllBrothers = async (req, res) => {
 
 exports.getBrotherByKey = async (req, res) => {
   const brother = await Brother.find({ key: req.params.key });
-  if (h.isNotValid(brother)) {
-    res.status(404);
-    return;
-  }
+  if (h.isNotValid(brother)) res.sendStatus(404);
   res.json({ brother });
 };
 
 exports.getBrotherById = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
   const brother = await Brother.findById(req.params.id);
-  if (h.isNotValid(brother)) {
-    res.status(404);
-    return;
-  }
+  if (h.isNotValid(brother)) res.sendStatus(404);
   res.json({ brother });
 };
 
 exports.filterBrothers = async (req, res) => {
   const { pseClass, year } = req.query;
   let search = {};
-  if (h.isValid(pseClass)) search = { ...search, pseClass };
-  if (h.isValid(year)) search = { ...search, year };
+  if (h.isValid(pseClass)) search = { ...search, 'pseClass.value': pseClass };
+  if (h.isValid(year)) search = { ...search, 'year.value': year };
   const brothers = await Brother.find(search).sort({ name: 1 });
-  if (h.isNotValid(brothers)) {
-    res.status(404);
-    return;
-  }
   res.json({ brothers, count: brothers.length });
 };
