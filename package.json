@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
-    "dev": "concurrently \"yarn run watch\" \"yarn run assets\"",
+    "dev": "concurrently \"yarn run watch\"",
     "assets": "webpack -w --display-max-modules 0"
   },
   "dependencies": {

@@ -1,0 +1,84 @@
+mixin brotherForm(brother)
+  form.form(action=`/brothers/add/${brother._id || ''}` method='POST')
+    -
+      const years = co.years
+      const positions = co.positions
+      const pseClasses = co.pseClasses
+      const subjects = co.subjects
+      const careers = co.careers
+      const mediaOpts = co.mediaOpts
+    if brother._id
+      span.mongoId= brother._id
+    label.label Name
+      span.desc First &amp; Last
+      input(type="text" name="name" value=brother.name required placeholder="Rahul Rangnekar")
+    label Key
+      span.desc Format: "first_last" or "first_last_1" **must be unique** and match Cloudinary image name
+      input(type="text" name="key" value=brother.key required placeholder="rahul_rangnekar")
+    label PSE Class
+      select(name="pseClass" value=brother.pseClass required)
+        each c in pseClasses
+          option(value=c.label selected=brother.pseClass===c.label) #{c.label}
+    label Year
+      select(name="year" value=brother.year required)
+        each y in years
+          option(value=y.value selected=brother.year.value===y.value) #{y.label}
+    label.row Is Executive?
+      .radio.row
+        //- use == and != because brother.isExecutive value in database is Boolean, not String
+        label.row Yes
+          input(type="radio" name="isExecutive" value=(true).toString() checked=brother.isExecutive=='true')
+        label.row No
+          input(type="radio" name="isExecutive" value=(false).toString() checked=brother.isExecutive!='true')
+    label Position
+      select(name="position" value=brother.position required)
+        each p in positions
+          option(value=p.label selected=brother.position===p.label) #{p.label}
+    label Hometown
+      span.desc Format: "City, State Abbreviation" or "City, Country"
+      input(type="text" name="hometown" value=brother.hometown required placeholder="Claremont, CA || Toronto, Canada")
+    label Major 1
+      select(name="major1" value=brother.major1 required)
+        each m in subjects
+          option(value=m.label selected=brother.major1===m.label) #{m.label}
+    label Major 2
+      select(name="major2" value=brother.major2)
+        each m in subjects
+          option(value=m.label selected=brother.major2===m.label) #{m.label}
+    label Minor 1
+      select(name="minor1" value=brother.minor1)
+        each m in subjects
+          option(value=m.label selected=brother.minor1===m.label) #{m.label}
+    label Minor 2
+      select(name="minor2" value=brother.minor2)
+        each m in subjects
+          option(value=m.label selected=brother.minor2===m.label) #{m.label}
+    label Career Interest 1
+      select(name="careerInterest1" value=brother.careerInterest1 required)
+        each c in careers
+          option(value=c.label selected=brother.careerInterest1===c.label) #{c.label}
+    label Career Interest 2
+      select(name="careerInterest2" value=brother.careerInterest2)
+        each c in careers
+          option(value=c.label selected=brother.careerInterest2===c.label) #{c.label}
+    label Previous Position 1
+      select(name="previousPosition1" value=brother.previousPosition1)
+        each p in positions
+          option(value=p.label selected=brother.previousPosition1===p.label) #{p.label}
+    label Previous Position 2
+      select(name="previousPosition2")
+        each p in positions
+          option(value=p.label selected=brother.previousPosition2===p.label) #{p.label}
+    label Previous Position 3
+      select(name="previousPosition3")
+        each p in positions
+          option(value=p.label selected=brother.previousPosition3===p.label) #{p.label}
+    label Biography
+      textarea(name="bio" required)= brother.bio
+    fieldset.column(name="mediaUrls") Media URLs
+      each m in mediaOpts
+        label #{m.label}
+          input(type="text" name=m.value value=brother[m.value])
+    .action-buttons
+      input.action(type="submit" value="Save")
+      //- button.action()

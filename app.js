@@ -13,6 +13,7 @@ const path = require('path');
 // local
 const routes = require('./routes/index');
 const helpers = require('./helpers');
+const constants = require('./constants');
 const errorHandlers = require('./handlers/errorHandlers');
 
 // create Express app
@@ -52,6 +53,7 @@ app.use(
 // pass variables to templates & all requests
 app.use((req, res, next) => {
   res.locals.h = helpers;
+  res.locals.co = constants;
   res.locals.user = req.user || null;
   res.locals.currentPath = req.path;
   next();
