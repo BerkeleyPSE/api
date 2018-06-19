@@ -16,4 +16,11 @@ exports.getFields = req => {
     .join(' ');
 };
 
+exports.getUsername = url => {
+  if (iU(url) || iE(url)) return '';
+  if (url.slice(-1) === '/') return '';
+  const split = url.split('/');
+  return split[split.length - 1];
+};
+
 exports.dump = x => JSON.stringify(x, null, 2);

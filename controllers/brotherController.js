@@ -15,6 +15,14 @@ exports.getAllBrothers = async (req, res) => {
   res.json({ brothers, count });
 };
 
+exports.getBrothers = async (req, res) => {
+  // res.json({ it: 'works' });
+  const brothersPromise = Brother.find({}, 'name _id');
+  const countPromise = Brother.count();
+  const [brothers, count] = await Promise.all([brothersPromise, countPromise]);
+  res.render('brother', { brothers, count });
+};
+
 exports.getExecutives = async (req, res) => {
   const fields = h.getFields(req);
   const executives = await Brother.find({ isExecutive: true }, fields).exec();
@@ -27,12 +35,10 @@ exports.getBrotherByKey = async (req, res) => {
   res.json({ brother });
 };
 
-exports.getBrotherFormById = async (req, res) => {
+exports.updateBrotherById = async (req, res) => {
   const brother = await Brother.findById(req.params.id);
   if (h.isNotValid(brother)) res.sendStatus(404);
-  res.render('brother', { brother });
-  // const brotherToSend = { ...brother, ...formatToSend(brother) };
-  // res.render('brother', { brother: brotherToSend });
+  res.render('brotherEdit', { brother });
 };
 
 exports.getBrotherById = async (req, res) => {
@@ -42,26 +48,31 @@ exports.getBrotherById = async (req, res) => {
   res.json({ brother });
 };
 
-exports.addBrother = (req, res) => res.render('brother');
-
 exports.createBrother = async (req, res) => {
   req.body = { ...req.body, ...formatToSave(req.body) };
   const brother = await new Brother(req.body).save();
-  res.redirect(`/brothers/${brother.id}`);
+  res.redirect(`/brothers/view/${brother.id}`);
 };
 
 exports.updateBrother = async (req, res) => {
+  req.body = { ...req.body, ...formatToSave(req.body) };
   const brother = await Brother.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   }).exec();
-  res.json({ brother });
+  res.redirect(`/brothers/view/${brother.id}`);
+};
+
+exports.viewBrother = async (req, res) => {
+  const brother = await Brother.findById(req.params.id);
+  if (h.isNotValid(brother)) res.sendStatus(404);
+  res.render('dataView', { data: brother, type: 'brothers' });
 };
 
 exports.filterBrothers = async (req, res) => {
   const { pseClass, year } = req.query;
   let search = {};
-  if (h.isValid(pseClass)) search = { ...search, 'pseClass.value': pseClass };
+  if (h.isValid(pseClass)) search = { ...search, pseClass };
   if (h.isValid(year)) search = { ...search, 'year.value': year };
   const brothers = await Brother.find(search).sort({ name: 1 });
   res.json({ brothers, count: brothers.length });
@@ -77,10 +88,10 @@ const formatToSave = body => {
   const previousPositions = [1, 2, 3]
     .map(p => body[`previousPosition${p}`])
     .filter(h.isValidToSave);
-  const mediaUrls = MEDIA_URLS.filter(m => h.isValidToSave(body[m])).map(m => ({
-    media: m,
-    href: body[m]
-  }));
+  const mediaUrls = {};
+  MEDIA_URLS.forEach(m => {
+    if (h.isValidToSave(body[m])) mediaUrls[m] = body[m];
+  });
   return {
     isExecutive,
     majors,
@@ -88,28 +99,5 @@ const formatToSave = body => {
     careerInterests,
     previousPositions,
     mediaUrls
-  };
-};
-
-const formatToSend = brother => {
-  const [major1, major2] = [...brother.majors];
-  const [minor1, minor2] = [...brother.minors];
-  const [careerInterest1, careerInterest2] = [...brother.careerInterests];
-  const [previousPosition1, previousPosition2, previousPosition3] = [
-    ...brother.previousPositions
-  ];
-  const mUrls = {};
-  brother.mediaUrls.forEach(m => (mUrls[m.media] = m.href));
-  return {
-    major1,
-    major2,
-    minor1,
-    minor2,
-    careerInterest1,
-    careerInterest2,
-    previousPosition1,
-    previousPosition2,
-    previousPosition3,
-    ...mUrls
   };
 };

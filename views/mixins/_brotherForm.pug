@@ -1,5 +1,6 @@
 mixin brotherForm(brother)
-  form.form(action=`/brothers/add/${brother._id || ''}` method='POST')
+  - const actionURL = brother._id ? `/brothers/edit/${brother._id}` : '/brothers/add';
+  form.form(action=actionURL method='POST')
     -
       const years = co.years
       const positions = co.positions
@@ -16,13 +17,13 @@ mixin brotherForm(brother)
       span.desc Format: "first_last" or "first_last_1" **must be unique** and match Cloudinary image name
       input(type="text" name="key" value=brother.key required placeholder="rahul_rangnekar")
     label PSE Class
-      select(name="pseClass" value=brother.pseClass required)
+      select(name="pseClass" required)
         each c in pseClasses
-          option(value=c.label selected=brother.pseClass===c.label) #{c.label}
+          option(value=c selected=brother.pseClass===c) #{c}
     label Year
-      select(name="year" value=brother.year required)
+      select(name="year" required)
         each y in years
-          option(value=y.value selected=brother.year.value===y.value) #{y.label}
+          option(value=y.value selected=(brother.year || {}).value===y.value) #{y.label}
     label.row Is Executive?
       .radio.row
         //- use == and != because brother.isExecutive value in database is Boolean, not String
@@ -33,52 +34,53 @@ mixin brotherForm(brother)
     label Position
       select(name="position" value=brother.position required)
         each p in positions
-          option(value=p.label selected=brother.position===p.label) #{p.label}
+          option(value=p selected=brother.position===p) #{p}
     label Hometown
       span.desc Format: "City, State Abbreviation" or "City, Country"
       input(type="text" name="hometown" value=brother.hometown required placeholder="Claremont, CA || Toronto, Canada")
     label Major 1
-      select(name="major1" value=brother.major1 required)
+      select(name="major1" required)
         each m in subjects
-          option(value=m.label selected=brother.major1===m.label) #{m.label}
+          option(value=m selected=brother.major1===m) #{m}
     label Major 2
-      select(name="major2" value=brother.major2)
+      select(name="major2")
         each m in subjects
-          option(value=m.label selected=brother.major2===m.label) #{m.label}
+          option(value=m selected=brother.major2===m) #{m}
     label Minor 1
-      select(name="minor1" value=brother.minor1)
+      select(name="minor1")
         each m in subjects
-          option(value=m.label selected=brother.minor1===m.label) #{m.label}
+          option(value=m selected=brother.minor1===m) #{m}
     label Minor 2
-      select(name="minor2" value=brother.minor2)
+      select(name="minor2")
         each m in subjects
-          option(value=m.label selected=brother.minor2===m.label) #{m.label}
+          option(value=m selected=brother.minor2===m) #{m}
     label Career Interest 1
-      select(name="careerInterest1" value=brother.careerInterest1 required)
+      select(name="careerInterest1" required)
         each c in careers
-          option(value=c.label selected=brother.careerInterest1===c.label) #{c.label}
+          option(value=c selected=brother.careerInterest1===c) #{c}
     label Career Interest 2
-      select(name="careerInterest2" value=brother.careerInterest2)
+      select(name="careerInterest2")
         each c in careers
-          option(value=c.label selected=brother.careerInterest2===c.label) #{c.label}
+          option(value=c selected=brother.careerInterest2===c) #{c}
     label Previous Position 1
-      select(name="previousPosition1" value=brother.previousPosition1)
+      select(name="previousPosition1")
         each p in positions
-          option(value=p.label selected=brother.previousPosition1===p.label) #{p.label}
+          option(value=p selected=brother.previousPosition1===p) #{p}
     label Previous Position 2
       select(name="previousPosition2")
         each p in positions
-          option(value=p.label selected=brother.previousPosition2===p.label) #{p.label}
+          option(value=p selected=brother.previousPosition2===p) #{p}
     label Previous Position 3
       select(name="previousPosition3")
         each p in positions
-          option(value=p.label selected=brother.previousPosition3===p.label) #{p.label}
+          option(value=p selected=brother.previousPosition3===p) #{p}
     label Biography
       textarea(name="bio" required)= brother.bio
-    fieldset.column(name="mediaUrls") Media URLs
+    fieldset.column(name="mediaUrls") Media Usernames
       each m in mediaOpts
         label #{m.label}
-          input(type="text" name=m.value value=brother[m.value])
+          span.desc.lower #{m.href}
+            input(type="text" name=m.value value=brother[m.value] placeholder=m.ph)
     .action-buttons
       input.action(type="submit" value="Save")
       //- button.action()

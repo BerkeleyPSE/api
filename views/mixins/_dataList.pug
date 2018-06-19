@@ -1,0 +1,5 @@
+mixin dataList(data, type)
+  ul.data-list
+    each d in data
+      li.data-list__item
+        a(href=`/${type}/view/${d._id}`)= d.name

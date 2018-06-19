@@ -3,6 +3,7 @@ const dateFns = require('date-fns');
 const { Schema } = mongoose;
 
 const mongooseStatic = require('../databases/static');
+const h = require('../helpers');
 
 const BrotherSchema = new Schema(
   {
@@ -70,12 +71,10 @@ const BrotherSchema = new Schema(
       trim: true
     },
 
-    mediaUrls: [
-      {
-        media: String,
-        href: String
-      }
-    ]
+    mediaUrls: {
+      type: Schema.Types.Mixed,
+      default: {}
+    }
   },
   {
     toObject: {
@@ -87,40 +86,52 @@ const BrotherSchema = new Schema(
   }
 );
 
+// Virtual Setters
+// TODO: try to add these instead of using formatToSend() ?
+
+// Virtual Getters
+
 BrotherSchema.virtual('major1').get(function() {
   return this.majors[0] || '';
 });
-
 BrotherSchema.virtual('major2').get(function() {
   return this.majors[1] || '';
 });
-
 BrotherSchema.virtual('minor1').get(function() {
   return this.minors[0] || '';
 });
-
 BrotherSchema.virtual('minor2').get(function() {
   return this.minors[1] || '';
 });
-
 BrotherSchema.virtual('careerInterest1').get(function() {
   return this.careerInterests[0] || '';
 });
-
 BrotherSchema.virtual('careerInterest2').get(function() {
   return this.careerInterests[1] || '';
 });
-
 BrotherSchema.virtual('previousPosition1').get(function() {
   return this.previousPositions[0] || '';
 });
-
 BrotherSchema.virtual('previousPosition2').get(function() {
   return this.previousPositions[1] || '';
 });
-
 BrotherSchema.virtual('previousPosition3').get(function() {
   return this.previousPositions[2] || '';
+});
+BrotherSchema.virtual('linkedin').get(function() {
+  return h.getUsername(this.mediaUrls.linkedin) || '';
+});
+BrotherSchema.virtual('twitter').get(function() {
+  return h.getUsername(this.mediaUrls.twitter) || '';
+});
+BrotherSchema.virtual('medium').get(function() {
+  return h.getUsername(this.mediaUrls.medium) || '';
+});
+BrotherSchema.virtual('website').get(function() {
+  return h.getUsername(this.mediaUrls.website) || '';
+});
+BrotherSchema.virtual('github').get(function() {
+  return h.getUsername(this.mediaUrls.github) || '';
 });
 
 // TODO: add indices???

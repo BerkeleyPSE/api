@@ -1,11 +1,8 @@
 extends layout
 
-include mixins/_brotherForm
+include mixins/_dataList
 
 block content
-  if brother
-    h2.title Edit #{brother.name}
-    //- pre= h.dump(brother)
-  else
-    h2.title Add Brother
-  +brotherForm(brother || {})
+  +dataList(brothers, 'brothers')
+  hr
+  span.count #{count} brothers

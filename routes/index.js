@@ -9,25 +9,32 @@ const fulltimeController = require('../controllers/fulltimeController');
 
 const router = express.Router();
 
-router.get('/', (req, res) => res.render('index'));
-
+/*** INTERNAL AND EXTERNAL API ***/
 router.get('/brothers/all', catchErrors(brotherController.getAllBrothers));
+
+/*** INTERNAL API ***/
+router.get('/', (req, res) => res.render('index'));
+router.get('/brothers', catchErrors(brotherController.getBrothers));
+router.get('/brothers/add', (req, res) => res.render('brotherEdit'));
+// TODO:: add requireLogin and canEdit middleware after passport is implemented
+router.post('/brothers/add', catchErrors(brotherController.createBrother));
+router.get(
+  '/brothers/edit/:id',
+  catchErrors(brotherController.updateBrotherById)
+);
+router.post('/brothers/edit/:id', catchErrors(brotherController.updateBrother));
+router.get('/brothers/view/:id', catchErrors(brotherController.viewBrother));
+
+/*** EXTERNAL API ***/
 router.get(
   '/brothers/executives',
   catchErrors(brotherController.getExecutives)
 );
-router.get('/brothers/:id', catchErrors(brotherController.getBrotherFormById));
 router.get('/brothers/id/:id', catchErrors(brotherController.getBrotherById));
 router.get(
   '/brothers/key/:key',
   catchErrors(brotherController.getBrotherByKey)
 );
-// TODO:: create brother (add requireLogin and canEdit middleware after passport is implemented)
-router.get('/brothers/add', brotherController.addBrother);
-router.post('/brothers/add', catchErrors(brotherController.createBrother));
-router.post('/brothers/edit', catchErrors(brotherController.editBrother));
-// TODO: update brother
-// TODO: delete brother
 router.get('/brothers/filter', catchErrors(brotherController.filterBrothers));
 
 router.get(

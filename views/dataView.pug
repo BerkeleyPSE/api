@@ -1,0 +1,5 @@
+extends layout
+
+block content
+  pre= h.dump(data)
+  a(href=`/${type}/edit/${data._id}`) Edit
