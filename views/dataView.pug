@@ -2,4 +2,4 @@ extends layout
 
 block content
   pre= h.dump(data)
-  a(href=`/${type}/edit/${data._id}`) Edit
+  a.btn.btn-primary(href=`/${type}/edit/${data._id}`) Edit

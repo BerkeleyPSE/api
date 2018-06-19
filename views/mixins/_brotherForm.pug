@@ -8,79 +8,124 @@ mixin brotherForm(brother)
       const subjects = co.subjects
       const careers = co.careers
       const mediaOpts = co.mediaOpts
+
     if brother._id
-      span.mongoId= brother._id
-    label.label Name
-      span.desc First &amp; Last
-      input(type="text" name="name" value=brother.name required placeholder="Rahul Rangnekar")
-    label Key
-      span.desc Format: "first_last" or "first_last_1" **must be unique** and match Cloudinary image name
-      input(type="text" name="key" value=brother.key required placeholder="rahul_rangnekar")
-    label PSE Class
-      select(name="pseClass" required)
+      .form-group
+        label(for="mongoId") Database ID
+        input.form-control(type="text" id="mongoId" value=brother._id readonly)
+    
+    .form-group
+      label(for="name") Name
+      input.form-control(type="text" name="name" id="name" value=brother.name placeholder="Rahul Rangnekar" required)
+      small.form-text.text-muted Format: "FirstName LastName"
+
+    .form-group
+      label(for="key") Key
+      input.form-control(type="text" name="key" id="key" value=brother.key placeholder="rahul_rangnekar" required)
+      small.form-text.text-muted Format: "first_last" or "first_last_1" **must be unique** and match Cloudinary image name
+
+    .form-group
+      label(for="pseClass") PSE Class
+      select.form-control(name="pseClass" id="pseClass" required)
         each c in pseClasses
-          option(value=c selected=brother.pseClass===c) #{c}
-    label Year
-      select(name="year" required)
+          option(value=c selected=brother.pseClass===c) #{c}      
+
+    .form-group
+      label(for="year") Year
+      select.form-control(name="year" id="year" required)
         each y in years
           option(value=y.value selected=(brother.year || {}).value===y.value) #{y.label}
-    label.row Is Executive?
-      .radio.row
-        //- use == and != because brother.isExecutive value in database is Boolean, not String
-        label.row Yes
-          input(type="radio" name="isExecutive" value=(true).toString() checked=brother.isExecutive=='true')
-        label.row No
-          input(type="radio" name="isExecutive" value=(false).toString() checked=brother.isExecutive!='true')
-    label Position
-      select(name="position" value=brother.position required)
+
+    .form-group Is Executive?
+      //- use == and != because brother.isExecutive value in database is Boolean, not String
+      .form-check
+        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-no" value=(false).toString() checked=brother.isExecutive!='true')
+        label.form-check-label(for="isExecutive-no") No
+      .form-check
+        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-yes" value=(true).toString() checked=brother.isExecutive=='true')
+        label.form-check-label(for="isExecutive-yes") Yes
+
+    .form-group
+      label(for="position") Position
+      select.form-control(name="position" id="position" value=brother.position required)
         each p in positions
           option(value=p selected=brother.position===p) #{p}
-    label Hometown
-      span.desc Format: "City, State Abbreviation" or "City, Country"
-      input(type="text" name="hometown" value=brother.hometown required placeholder="Claremont, CA || Toronto, Canada")
-    label Major 1
-      select(name="major1" required)
+
+    .form-group
+      label(for="hometown") Hometown
+      input.form-control(name="hometown" id="hometown" value=brother.hometown placeholder="Claremont, CA || Toronto, Canada" required)
+      small.form-text.text-muted Format: "City, State Abbreviation" or "City, Country"
+    
+    .form-group
+      label(for="major1") Major 1
+      select.form-control(name="major1" id="major1" required)
         each m in subjects
           option(value=m selected=brother.major1===m) #{m}
-    label Major 2
-      select(name="major2")
+      small.form-text.text-muted This is required      
+
+    .form-group
+      label(for="major2") Major 2
+      select.form-control(name="major2" id="major2")
         each m in subjects
-          option(value=m selected=brother.major2===m) #{m}
-    label Minor 1
-      select(name="minor1")
+          option(value=m selected=brother.major2===m) #{m}      
+
+    .form-group
+      label(for="minor1") Minor 1
+      select.form-control(name="minor1" id="minor1")
         each m in subjects
-          option(value=m selected=brother.minor1===m) #{m}
-    label Minor 2
-      select(name="minor2")
+          option(value=m selected=brother.minor1===m) #{m}      
+
+    .form-group
+      label(for="minor2") Minor 2
+      select.form-control(name="minor2" id="minor2")
         each m in subjects
-          option(value=m selected=brother.minor2===m) #{m}
-    label Career Interest 1
-      select(name="careerInterest1" required)
+          option(value=m selected=brother.minor2===m) #{m}      
+
+    .form-group
+      label(for="careerInterest1") Career Interest 1
+      select.form-control(name="careerInterest1" id="careerInterest1" required)
         each c in careers
           option(value=c selected=brother.careerInterest1===c) #{c}
-    label Career Interest 2
-      select(name="careerInterest2")
+      small.form-text.text-muted This is required
+
+    .form-group
+      label(for="careerInterest2") Career Interest 2
+      select.form-control(name="careerInterest2" id="careerInterest2")
         each c in careers
           option(value=c selected=brother.careerInterest2===c) #{c}
-    label Previous Position 1
-      select(name="previousPosition1")
+
+    .form-group
+      label(for="previousPosition1") Previous Position 1
+      select.form-control(name="previousPosition1" id="previousPosition1" required)
         each p in positions
           option(value=p selected=brother.previousPosition1===p) #{p}
-    label Previous Position 2
-      select(name="previousPosition2")
+
+    .form-group
+      label(for="previousPosition2") Previous Position 2
+      select.form-control(name="previousPosition2" id="previousPosition2" required)
         each p in positions
-          option(value=p selected=brother.previousPosition2===p) #{p}
-    label Previous Position 3
-      select(name="previousPosition3")
+          option(value=p selected=brother.previousPosition2===p) #{p}          
+
+    .form-group
+      label(for="previousPosition3") Previous Position 3
+      select.form-control(name="previousPosition3" id="previousPosition3" required)
         each p in positions
-          option(value=p selected=brother.previousPosition3===p) #{p}
-    label Biography
-      textarea(name="bio" required)= brother.bio
-    fieldset.column(name="mediaUrls") Media Usernames
+          option(value=p selected=brother.previousPosition3===p) #{p}          
+        
+    .form-group
+      label(for="bio") Biography
+      textarea.form-control(name="bio" id="bio")= brother.bio
+      small.form-text.text-muted This is required
+
+    div Media Usernames
       each m in mediaOpts
-        label #{m.label}
-          span.desc.lower #{m.href}
-            input(type="text" name=m.value value=brother[m.value] placeholder=m.ph)
-    .action-buttons
-      input.action(type="submit" value="Save")
+        .input-group.mb-3
+          label.mr-2(for=m.value)= m.label
+          if h.isValid(m.href)
+            .input-group-prepend
+              span.input-group-text(id=`${m.value}-prepend`)= m.href
+          input.form-control(type="text" name=m.value id=m.value value=brother[m.value] placeholder=m.ph aria-describedby=`${m.value}-prepend`)
+    
+    .action-buttons.flex-row
+      input.btn.btn-primary(type="submit" value="Save")
       //- button.action()
