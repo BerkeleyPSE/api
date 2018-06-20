@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Fiorenze Davley",
+    "industry": "Major Banks",
+    "company": "Podcat",
+    "position": "VP Accounting",
+    "location": "Altamira, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Matilde Prudence",
+    "industry": "n/a",
+    "company": "Blogpad",
+    "position": "Environmental Specialist",
+    "location": "Jiulongshan, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Filberto Giacobelli",
+    "industry": "n/a",
+    "company": "Kwinu",
+    "position": "Financial Analyst",
+    "location": "Dongzha, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Otto Kleinhaus",
+    "industry": "Investment Managers",
+    "company": "Viva",
+    "position": "Senior Editor",
+    "location": "Haukipudas, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Gilburt Grealey",
+    "industry": "Major Banks",
+    "company": "Yadel",
+    "position": "Financial Analyst",
+    "location": "Indianapolis, CA",
+    "gradYear": 2018
+  },
+  {
+    "name": "Malena Grenshields",
+    "industry": "Savings Institutions",
+    "company": "Trupe",
+    "position": "Legal Assistant",
+    "location": "Małdyty, CA",
+    "gradYear": 2020
+  },
+  {
+    "name": "Freeman Aitcheson",
+    "industry": "n/a",
+    "company": "Blogspan",
+    "position": "Senior Cost Accountant",
+    "location": "Matriz de Camaragibe, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Clemmie Abdon",
+    "industry": "Major Banks",
+    "company": "Geba",
+    "position": "Product Engineer",
+    "location": "Watuweri, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Melissa Larmett",
+    "industry": "Publishing",
+    "company": "Skynoodle",
+    "position": "Sales Representative",
+    "location": "Leipzig, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Vicky Blaschek",
+    "industry": "Precious Metals",
+    "company": "Photobean",
+    "position": "VP Accounting",
+    "location": "Shumerlya, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Jerome Durgan",
+    "industry": "Multi-Sector Companies",
+    "company": "Roombo",
+    "position": "Software Test Engineer II",
+    "location": "Dayin, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Brynna Rubinov",
+    "industry": "n/a",
+    "company": "Voolia",
+    "position": "Nurse",
+    "location": "Pantai Ceuremen, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Cherrita Gammet",
+    "industry": "Catalog/Specialty Distribution",
+    "company": "Dynabox",
+    "position": "Analog Circuit Design manager",
+    "location": "Buliran, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Reider Pawelczyk",
+    "industry": "Computer Software: Prepackaged Software",
+    "company": "Shufflester",
+    "position": "Staff Scientist",
+    "location": "Carolina, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Rosemarie Pasterfield",
+    "industry": "n/a",
+    "company": "Livefish",
+    "position": "Account Representative II",
+    "location": "Pacapausa, CA",
+    "gradYear": 2017
+  },
+  {
+    "name": "Kristina Cardwell",
+    "industry": "Computer Software: Programming, Data Processing",
+    "company": "Dynabox",
+    "position": "Payment Adjustment Coordinator",
+    "location": "Shchastya, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Drusi Oherlihy",
+    "industry": "Steel/Iron Ore",
+    "company": "Lazzy",
+    "position": "Marketing Manager",
+    "location": "Chokwé, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Meredeth Jiras",
+    "industry": "Major Banks",
+    "company": "Tambee",
+    "position": "Account Representative III",
+    "location": "Poja, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Wolfie Stelfox",
+    "industry": "n/a",
+    "company": "Jayo",
+    "position": "Programmer III",
+    "location": "Domsjö, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Katinka Dossett",
+    "industry": "Industrial Machinery/Components",
+    "company": "Voonte",
+    "position": "VP Sales",
+    "location": "Paraíso das Águas, CA",
+    "gradYear": 2018
+  },
+  {
+    "name": "Pryce Buggy",
+    "industry": "Major Chemicals",
+    "company": "Tagcat",
+    "position": "Chief Design Engineer",
+    "location": "Khueang Nai, CA",
+    "gradYear": 2018
+  },
+  {
+    "name": "Ferne Ghelardi",
+    "industry": "n/a",
+    "company": "Kayveo",
+    "position": "Biostatistician II",
+    "location": "Lokwabe, CA",
+    "gradYear": 2020
+  },
+  {
+    "name": "Kenyon Defew",
+    "industry": "n/a",
+    "company": "Topiclounge",
+    "position": "Chemical Engineer",
+    "location": "Mutengene, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Dan Storres",
+    "industry": "Diversified Commercial Services",
+    "company": "Oloo",
+    "position": "Nuclear Power Engineer",
+    "location": "Vân Tùng, CA",
+    "gradYear": 2017
+  },
+  {
+    "name": "Kiah Guage",
+    "industry": "n/a",
+    "company": "Jaxspan",
+    "position": "Account Representative II",
+    "location": "Alibago, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Vonnie Cornthwaite",
+    "industry": "Computer Software: Programming, Data Processing",
+    "company": "Skimia",
+    "position": "Senior Cost Accountant",
+    "location": "Dubreuil, CA",
+    "gradYear": 2020
+  },
+  {
+    "name": "Gladi Loftin",
+    "industry": "Property-Casualty Insurers",
+    "company": "Youopia",
+    "position": "Paralegal",
+    "location": "Nihommatsu, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Moses Puzey",
+    "industry": "Military/Government/Technical",
+    "company": "Yabox",
+    "position": "Occupational Therapist",
+    "location": "Daxi, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Adriano Olrenshaw",
+    "industry": "n/a",
+    "company": "Gigabox",
+    "position": "Analyst Programmer",
+    "location": "Toledo, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Forster Loncaster",
+    "industry": "Telecommunications Equipment",
+    "company": "InnoZ",
+    "position": "Operator",
+    "location": "Bifeng, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Georgetta Grimestone",
+    "industry": "n/a",
+    "company": "Zoonoodle",
+    "position": "Human Resources Manager",
+    "location": "Matou, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Mariska Legrave",
+    "industry": "Major Pharmaceuticals",
+    "company": "Zoozzy",
+    "position": "Design Engineer",
+    "location": "Xiaosong, CA",
+    "gradYear": 2017
+  },
+  {
+    "name": "Artemas Grebbin",
+    "industry": "n/a",
+    "company": "Youopia",
+    "position": "Chief Design Engineer",
+    "location": "Ourtzagh, CA",
+    "gradYear": 2014
+  },
+  {
+    "name": "Atalanta Codlin",
+    "industry": "n/a",
+    "company": "Demimbu",
+    "position": "Senior Cost Accountant",
+    "location": "Phatthaya, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Lesly Crush",
+    "industry": "Packaged Foods",
+    "company": "Skinte",
+    "position": "Sales Representative",
+    "location": "Santa Lucia, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Ardene Connue",
+    "industry": "n/a",
+    "company": "Flipbug",
+    "position": "Cost Accountant",
+    "location": "Cocieri, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Dickie Varden",
+    "industry": "Major Pharmaceuticals",
+    "company": "Jetpulse",
+    "position": "Health Coach IV",
+    "location": "Krosno Odrzańskie, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Torrie Jirzik",
+    "industry": "Semiconductors",
+    "company": "Abata",
+    "position": "General Manager",
+    "location": "Morani, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Allegra Semple",
+    "industry": "Food Chains",
+    "company": "Abata",
+    "position": "Programmer Analyst II",
+    "location": "Fulu, CA",
+    "gradYear": 2017
+  },
+  {
+    "name": "Polly Housam",
+    "industry": "Industrial Specialties",
+    "company": "Jabberstorm",
+    "position": "Electrical Engineer",
+    "location": "Lembanah, CA",
+    "gradYear": 2018
+  },
+  {
+    "name": "Guntar Erdis",
+    "industry": "Computer Software: Programming, Data Processing",
+    "company": "Skalith",
+    "position": "Editor",
+    "location": "Lysekil, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Tersina Wattam",
+    "industry": "Investment Bankers/Brokers/Service",
+    "company": "Vinte",
+    "position": "Sales Representative",
+    "location": "Lipnik, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Ilysa Charpin",
+    "industry": "Specialty Chemicals",
+    "company": "Babbleblab",
+    "position": "Developer I",
+    "location": "Governor’s Harbour, CA",
+    "gradYear": 2019
+  },
+  {
+    "name": "Netta Mole",
+    "industry": "n/a",
+    "company": "Gigabox",
+    "position": "Product Engineer",
+    "location": "Araras, CA",
+    "gradYear": 2020
+  },
+  {
+    "name": "Hyacinthie Tirrey",
+    "industry": "Property-Casualty Insurers",
+    "company": "Zoombox",
+    "position": "Software Consultant",
+    "location": "Kujama, CA",
+    "gradYear": 2016
+  },
+  {
+    "name": "Edie Northcote",
+    "industry": "Real Estate Investment Trusts",
+    "company": "Npath",
+    "position": "Staff Accountant III",
+    "location": "Kavajë, CA",
+    "gradYear": 2020
+  },
+  {
+    "name": "Collin Longbottom",
+    "industry": "Telecommunications Equipment",
+    "company": "Quimm",
+    "position": "VP Marketing",
+    "location": "Nam Som, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Cloe Debold",
+    "industry": "Finance: Consumer Services",
+    "company": "Topicstorm",
+    "position": "Systems Administrator IV",
+    "location": "Bangker, CA",
+    "gradYear": 2017
+  },
+  {
+    "name": "Mal Ebben",
+    "industry": "Precious Metals",
+    "company": "Thoughtworks",
+    "position": "Nuclear Power Engineer",
+    "location": "Dapawan, CA",
+    "gradYear": 2015
+  },
+  {
+    "name": "Padraic Batey",
+    "industry": "Commercial Banks",
+    "company": "Browsedrive",
+    "position": "Assistant Professor",
+    "location": "Vyerkhnyadzvinsk, CA",
+    "gradYear": 2014
+  }
+]

@@ -2,11 +2,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-const { Schema } = mongoose;
 
-const mongooseApp = require('../databases/application');
-
-const RegformSchema = new Schema({
+const RegformSchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'You must provide a name.',
@@ -22,9 +19,12 @@ const RegformSchema = new Schema({
     validate: [validator.isEmail, 'Email address is invalid.']
   },
 
-  submissionTime: Date
+  submissionTime: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 RegformSchema.plugin(mongodbErrorHandler);
 
-module.exports = mongooseApp.model('Regform', RegformSchema);
+module.exports = mongoose.model('Regform', RegformSchema);

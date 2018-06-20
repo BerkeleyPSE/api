@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const h = require('../helpers');
-const mongooseStatic = require('../databases/static');
-const Brother = mongooseStatic.model('Brother');
+const Brother = mongoose.model('Brother');
 
 const MEDIA_URLS = ['linkedin', 'twitter', 'medium', 'website', 'github'];
 
@@ -80,8 +79,7 @@ exports.filterBrothers = async (req, res) => {
 
 exports.deleteBrother = async (req, res) => {
   const brother = await Brother.findByIdAndRemove(req.params.id);
-  console.log(brother);
-  // if (h.isNotValid(brother)) res.sendStatus(404);
+  if (h.isNotValid(brother)) res.sendStatus(404);
   res.redirect('/brothers');
 };
 

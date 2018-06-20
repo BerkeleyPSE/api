@@ -1,10 +1,7 @@
 // node modules
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
-const mongooseStatic = require('../databases/static');
-
-const InternCareerSchema = new Schema({
+const InternCareerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'You must provide a name.',
@@ -37,9 +34,19 @@ const InternCareerSchema = new Schema({
 
   summerYear: {
     type: Number,
-    required: 'You must provide a graduation year.',
+    required: 'You must provide a summer year.',
     min: 2013
+  },
+
+  updatedAt: {
+    type: Date,
+    default: Date.now()
   }
 });
 
-module.exports = mongooseStatic.model('InternCareer', InternCareerSchema);
+InternCareerSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+module.exports = mongoose.model('InternCareer', InternCareerSchema);

@@ -1,9 +1,8 @@
 // node modules
 const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
-
-const ApplicationSchema = new Schema({
+// TODO: add validators
+const ApplicationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -113,4 +112,4 @@ const ApplicationSchema = new Schema({
   }
 });
 
-module.exports = ApplicationSchema;
+module.exports = mongoose.model('Application', ApplicationSchema);

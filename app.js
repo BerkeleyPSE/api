@@ -1,11 +1,11 @@
 const express = require('express');
 const session = require('express-session');
-const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo');
+// const mongoose = require('mongoose');
+// const MongoStore = require('connect-mongo');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const promisify = require('es6-promisify');
+// const passport = require('passport');
+// const promisify = require('es6-promisify');
 const expressValidator = require('express-validator');
 
 const path = require('path');

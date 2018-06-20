@@ -1,49 +1,77 @@
-// require('dotenv').config({ path: __dirname + '../variables.env' });
+require('dotenv').config({ path: __dirname + '/../variables.env' });
 const fs = require('fs');
-// const path = require('path');
+const mongoose = require('mongoose');
 
-require('../databases/static');
-// require('../databases/application');
+mongoose.connect(process.env.MONGO_URI);
 
 const Brother = require('../models/Brother');
-// const FulltimeCareer = require('../models/FulltimeCareer');
-// const InternCareer = require('../models/InternCareer');
-// const Regform = require('../models/Regform');
+const FulltimeCareer = require('../models/FulltimeCareer');
+const InternCareer = require('../models/InternCareer');
+const Regform = require('../models/Regform');
 // const Application = require('../models/Application');
 
 const brothers = JSON.parse(
   fs.readFileSync(__dirname + '/brothers.json', 'utf-8')
 );
+const fulltimeCareers = JSON.parse(
+  fs.readFileSync(__dirname + '/fulltimeCareers.json', 'utf-8')
+);
+const internCareers = JSON.parse(
+  fs.readFileSync(__dirname + '/internCareers.json', 'utf-8')
+);
+const regforms = JSON.parse(
+  fs.readFileSync(__dirname + '/regforms.json', 'utf-8')
+);
 
-async function deleteData() {
-  await Brother.remove();
-  // await FulltimeCareer.remove();
-  // await InternCareer.remove();
-  // await Regform.remove();
-  // await Application.remove();
-  console.log('~~~ data deleted successfully ~~~');
-  process.exit();
+async function deleteData(name, model) {
+  await model.remove();
+  console.log(`successfully deleted data for: ${name}`);
 }
 
-async function loadData() {
-  console.log('attempting to load data');
+async function loadData(name, data, model) {
+  console.log(`loading data: ${name}`);
   try {
-    await Brother.insertMany(brothers);
-    // await FulltimeCareer.insertMany(brothers);
-    // await InternCareer.insertMany(brothers);
-    // await Regform.insertMany(brothers);
-    // await Application.insertMany(brothers);
-    console.log('~~~ data loaded successfully ~~~');
-    process.exit();
+    await model.insertMany(data);
   } catch (e) {
-    console.log('~~~ error in loading data ~~~');
-    console.log(e);
+    console.log(`error in loading data: ${name}`, e);
     process.exit();
   }
+  console.log(`successfully loaded data for: ${name}`);
 }
 
-if (process.argv.includes('--delete')) {
-  deleteData();
-} else {
-  loadData();
-}
+(async function() {
+  if (process.argv.includes('--delete-all')) {
+    await deleteData('brothers', Brother);
+    await deleteData('fulltime careers', FulltimeCareer);
+    await deleteData('intern careers', InternCareer);
+    await deleteData('registration forms', Regform);
+    process.exit();
+  } else if (process.argv.includes('--load-all')) {
+    await loadData('brothers', brothers, Brother);
+    await loadData('fulltime careers', fulltimeCareers, FulltimeCareer);
+    await loadData('intern careers', internCareers, InternCareer);
+    await loadData('registration forms', regforms, Regform);
+    process.exit();
+  } else if (process.argv.includes('--brothers')) {
+    if (process.argv.includes('--delete'))
+      await deleleData('brothers', Brother);
+    else await loadData('brothers', brothers, Brother);
+  } else if (process.argv.includes('--fulltime')) {
+    if (process.argv.includes('--delete'))
+      await deleleData('fulltime careers', FulltimeCareer);
+    else await loadData('fulltime careers', fulltimeCareers, FulltimeCareer);
+  } else if (process.argv.includes('--intern')) {
+    if (process.argv.includes('--delete'))
+      await deleteData('intern careers', InternCareer);
+    else await loadData('intern careers', internCareers, InternCareer);
+  } else if (process.argv.includes('--regforms')) {
+    if (process.argv.includes('--delete'))
+      await deleteData('registration forms', Regform);
+    else await loadData('registration forms', regforms, Regform);
+  } else if (process.argv.includes('--applications')) {
+    console.log('not yet implemented');
+  } else {
+    console.log('invalid arguments');
+  }
+  process.exit();
+})();

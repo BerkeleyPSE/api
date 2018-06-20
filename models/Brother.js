@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
-const dateFns = require('date-fns');
-const { Schema } = mongoose;
-
-const mongooseStatic = require('../databases/static');
 const h = require('../helpers');
 
-const BrotherSchema = new Schema(
+const BrotherSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -72,8 +68,13 @@ const BrotherSchema = new Schema(
     },
 
     mediaUrls: {
-      type: Schema.Types.Mixed,
+      type: mongoose.Schema.Types.Mixed,
       default: {}
+    },
+
+    updatedAt: {
+      type: Date,
+      default: Date.now()
     }
   },
   {
@@ -85,6 +86,11 @@ const BrotherSchema = new Schema(
     }
   }
 );
+
+BrotherSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
 
 // Virtual Setters
 // TODO: try to add these instead of using formatToSend() ?
@@ -136,4 +142,4 @@ BrotherSchema.virtual('github').get(function() {
 
 // TODO: add indices???
 
-module.exports = mongooseStatic.model('Brother', BrotherSchema);
+module.exports = mongoose.model('Brother', BrotherSchema);

@@ -1,10 +1,7 @@
 // node modules
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
-const mongooseStatic = require('../databases/static');
-
-const FulltimeCareerSchema = new Schema({
+const FulltimeCareerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'You must provide a name.',
@@ -39,7 +36,17 @@ const FulltimeCareerSchema = new Schema({
     type: Number,
     required: 'You must provide a graduation year.',
     min: 2013
+  },
+
+  updatedAt: {
+    type: Date,
+    default: Date.now()
   }
 });
 
-module.exports = mongooseStatic.model('FulltimeCareer', FulltimeCareerSchema);
+FulltimeCareerSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+module.exports = mongoose.model('FulltimeCareer', FulltimeCareerSchema);

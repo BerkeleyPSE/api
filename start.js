@@ -1,9 +1,13 @@
+const mongoose = require('mongoose');
+
 // import environmental variables from variables.env file
 require('dotenv').config({ path: 'variables.env' });
 
-// connect to databases
-require('./databases/static');
-require('./databases/application');
+// connect to database
+mongoose.connect(process.env.MONGO_URI);
+mongoose.connection.on('error', err => {
+  console.error(`Could not connect to MLAB Mongo Database → ${err.message}`);
+});
 
 // import models
 require('./models/Brother');

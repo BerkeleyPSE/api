@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const h = require('../helpers');
-const mongooseStatic = require('../databases/static');
-const FulltimeCareer = mongooseStatic.model('FulltimeCareer');
+const FulltimeCareer = mongoose.model('FulltimeCareer');
 
 exports.getAllFulltimes = async (req, res) => {
   const fulltimesPromise = FulltimeCareer.find().sort({ name: 1 });

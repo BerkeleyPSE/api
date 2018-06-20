@@ -128,4 +128,4 @@ mixin brotherForm(brother)
     
     .action-buttons.flex-row
       input.btn.btn-primary(type="submit" value="Save")
-      //- button.action()
+      a.btn.btn-danger.float-right(href=`/brothers/view/${brother._id}`) Cancel
