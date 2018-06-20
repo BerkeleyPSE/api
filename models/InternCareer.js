@@ -42,4 +42,4 @@ const InternCareerSchema = new Schema({
   }
 });
 
-mongooseStatic.model('InternCareer', InternCareerSchema);
+module.exports = mongooseStatic.model('InternCareer', InternCareerSchema);

@@ -30,7 +30,7 @@ exports.getExecutives = async (req, res) => {
 };
 
 exports.getBrotherByKey = async (req, res) => {
-  const brother = await Brother.find({ key: req.params.key });
+  const brother = await Brother.findOne({ key: req.params.key });
   if (h.isNotValid(brother)) res.sendStatus(404);
   res.json({ brother });
 };
@@ -76,6 +76,13 @@ exports.filterBrothers = async (req, res) => {
   if (h.isValid(year)) search = { ...search, 'year.value': year };
   const brothers = await Brother.find(search).sort({ name: 1 });
   res.json({ brothers, count: brothers.length });
+};
+
+exports.deleteBrother = async (req, res) => {
+  const brother = await Brother.findByIdAndRemove(req.params.id);
+  console.log(brother);
+  // if (h.isNotValid(brother)) res.sendStatus(404);
+  res.redirect('/brothers');
 };
 
 const formatToSave = body => {

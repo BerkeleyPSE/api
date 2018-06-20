@@ -18,7 +18,7 @@ exports.getFields = req => {
 
 exports.getUsername = url => {
   if (iU(url) || iE(url)) return '';
-  if (url.slice(-1) === '/') return '';
+  if (['/', '@'].includes(url.slice(-1))) return '';
   const split = url.split('/');
   return split[split.length - 1];
 };

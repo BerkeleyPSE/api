@@ -24,6 +24,10 @@ router.get(
 );
 router.post('/brothers/edit/:id', catchErrors(brotherController.updateBrother));
 router.get('/brothers/view/:id', catchErrors(brotherController.viewBrother));
+router.get(
+  '/brothers/delete/:id',
+  catchErrors(brotherController.deleteBrother)
+);
 
 /*** EXTERNAL API ***/
 router.get(

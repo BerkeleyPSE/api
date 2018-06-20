@@ -42,4 +42,4 @@ const FulltimeCareerSchema = new Schema({
   }
 });
 
-mongooseStatic.model('FulltimeCareer', FulltimeCareerSchema);
+module.exports = mongooseStatic.model('FulltimeCareer', FulltimeCareerSchema);

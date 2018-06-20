@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Silky Rangnekar",
+    "key": "silky_rangnekar",
+    "pseClass": "Mu",
+    "year": 2,
+    "isExecutive": true,
+    "position": "President",
+    "hometown": "Berlin, Germany",
+    "majors": ["EECS"],
+    "minors": [],
+    "careerInterests": ["Accounting", "Business Development"],
+    "previousPositions": ["Chapter Secretary", "Director of Alumni Relations"],
+    "bio": "Silky is a cutie.",
+    "mediaUrls": {
+      "linkedin": "https://www.linkedin.com/in/silky",
+      "twitter": "https://www.twitter.com/silky",
+      "medium": "https://www.medium.com/@silky"
+    }
+  },
+  {
+    "name": "Rahul Rangnekar",
+    "key": "rahul_rangnekar",
+    "pseClass": "Theta",
+    "year": 4,
+    "isExecutive": false,
+    "position": "Prospective Member Trainer",
+    "hometown": "Claremont, CA",
+    "majors": ["Computer Science", "Economics"],
+    "minors": ["Cognitive Science"],
+    "careerInterests": ["Software Engineering", "Product Management"],
+    "previousPositions": [
+      "Director of Brotherhood",
+      "Vice President of Marketing"
+    ],
+    "bio":
+      "Through PSE, Rahul has learned to adapt his leadership style and 'fill the gaps' when working with team members who have distinct work ethics and skillsets. He enjoys the experiences PSE has given him - the Under Armour project, the opportunity to code this entire website, and the brotherhood of a lifetime. His role models are retired NBA player Tim Duncan and entrepreneur Tim Ferriss. Rahul was previously involved in the ASUC and American Red Cross at Cal. He enjoys working out daily, writing on Medium and LinkedIn, trying and reviewing restaurants on Yelp, and developing applications for others to enjoy.",
+    "mediaUrls": {
+      "linkedin": "https://www.linkedin.com/in/rahrang",
+      "twitter": "https://www.twitter.com/rahulrangnekar",
+      "medium": "https://www.medium.com/@rahrang",
+      "website": "https://www.rahulrangnekar.com",
+      "github": "https://www.github.com/rahrang"
+    }
+  }
+]

@@ -136,4 +136,4 @@ BrotherSchema.virtual('github').get(function() {
 
 // TODO: add indices???
 
-mongooseStatic.model('Brother', BrotherSchema);
+module.exports = mongooseStatic.model('Brother', BrotherSchema);

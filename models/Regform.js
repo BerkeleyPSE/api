@@ -27,4 +27,4 @@ const RegformSchema = new Schema({
 
 RegformSchema.plugin(mongodbErrorHandler);
 
-mongooseApp.model('Regform', RegformSchema);
+module.exports = mongooseApp.model('Regform', RegformSchema);

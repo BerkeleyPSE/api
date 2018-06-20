@@ -14,7 +14,8 @@
     "start": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
     "dev": "concurrently \"yarn run watch\"",
-    "assets": "webpack -w --display-max-modules 0"
+    "load-data": "node ./data/load-sample-data.js",
+    "delete-data": "node ./data/load-sample-data.js --delete"
   },
   "dependencies": {
     "axios": "^0.18.0",
