@@ -1,5 +1,6 @@
 const iU = require('lodash/isUndefined');
 const iE = require('lodash/isEmpty');
+const format = require('date-fns/format');
 
 exports.isNotValid = x => iU(x) || iE(x);
 exports.isValid = x => !(iU(x) || iE(x));
@@ -24,3 +25,5 @@ exports.getUsername = url => {
 };
 
 exports.dump = x => JSON.stringify(x, null, 2);
+
+exports.fmtDate = date => format(date, 'MM/DD/YY @ hh:mma');

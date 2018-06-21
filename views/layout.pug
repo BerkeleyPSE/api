@@ -4,14 +4,46 @@ html
     title API | UC Berkeley Pi Sigma Epsilon, Zeta Chi Chapter
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
     link(href="/stylesheets/index.css" rel="stylesheet")
-    //- link(href="/stylesheets/form.css" rel="stylesheet")
     link(href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet")
     meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
   body
     block header
-      header
-        h1 Welcome to Pi Sigma Epsilon's API
-    
+      .d-flex.w-100
+        nav.sidebar
+          .p-3
+            h1.h3 UC Berkeley
+              br
+              span Pi Sigma Epsilon
+              br
+              span API
+          ul.sidebar__list.px-3.my-2
+            li.m-2
+              a.sidebar__link(href="/") Home
+            li.m-2
+              a.sidebar__link(href="/brothers") Brothers
+            li.m-2
+              a.sidebar__link(href="/fulltimes") Fulltimes
+            li.m-2
+              a.sidebar__link(href="/internships") Internships
+            li.m-2
+              a.sidebar__link.disabled(href="/regforms") Registration Forms
+            li.m-2
+              a.sidebar__link.disabled(href="/applications") Applications
+            li.m-2
+              a.sidebar__link.disabled(href="/users") Users
+          hr
+          .profile.px-3
+            if user
+              .profile
+                .profile__title.text-center Your Profile
+                .profile__name.my-1 #{user.name}
+                .profile__email.my-1 #{user.email}
+                .profile__role.my-1 Role: #{user.role}
+                .profile__logout.text-center.mt-4
+                  a.btn.btn-primary(href="/auth/logout") Logout
+            else
+              p You are not logged in.
+
     .content
       block content
 

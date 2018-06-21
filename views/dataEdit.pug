@@ -1,0 +1,41 @@
+extends layout
+
+include mixins/_brotherForm
+include mixins/_fulltimeForm
+include mixins/_internshipForm
+include mixins/_userForm
+include mixins/_registrationForm
+
+//- TODO: add updatedAt fields to all forms
+
+block content
+  a.btn.btn-secondary.my-3(href=`/${type}`) &lt; Go Back
+
+  if type==='brothers'
+    if data
+      h2 Edit Brother: #{data.name}
+    else
+      h2 Add Brother
+    +brotherForm(brother || {})
+
+  if type==='fulltimes'
+    if data
+      h2 Edit Fulltime: #{data.name}
+    else
+      h2 Add Fulltime
+    +fulltimeForm(data || {})
+
+  if type==='internships'
+    if data
+      h2 Edit Internship: #{data.name}
+    else
+      h2 Add Internship
+    +internshipForm(data || {})
+  
+  if type==='users'
+    h2 View User: #{data.name}
+    +userForm(data || {})
+  
+  if type==='regforms'
+    h2 View Registration Form: #{data.name}
+    +registrationForm(data || {})

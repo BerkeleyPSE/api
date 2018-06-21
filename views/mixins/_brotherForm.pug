@@ -126,6 +126,7 @@ mixin brotherForm(brother)
               span.input-group-text(id=`${m.value}-prepend`)= m.href
           input.form-control(type="text" name=m.value id=m.value value=brother[m.value] placeholder=m.ph aria-describedby=`${m.value}-prepend`)
     
-    .action-buttons.flex-row
+    .pt-4
       input.btn.btn-primary(type="submit" value="Save")
-      a.btn.btn-danger.float-right(href=`/brothers/view/${brother._id}`) Cancel
+      - const cancelURL = h.isValid(brother) ? `/brothers/view/${brother._id}` : '/brothers';
+      a.btn.btn-danger.float-right(href=cancelURL) Cancel

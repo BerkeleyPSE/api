@@ -1,7 +1,7 @@
 // node modules
 const mongoose = require('mongoose');
 
-const FulltimeCareerSchema = new mongoose.Schema({
+const FulltimeSchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'You must provide a name.',
@@ -44,9 +44,9 @@ const FulltimeCareerSchema = new mongoose.Schema({
   }
 });
 
-FulltimeCareerSchema.pre('save', function(next) {
+FulltimeSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();
 });
 
-module.exports = mongoose.model('FulltimeCareer', FulltimeCareerSchema);
+module.exports = mongoose.model('Fulltime', FulltimeSchema);

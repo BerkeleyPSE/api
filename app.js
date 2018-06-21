@@ -1,20 +1,24 @@
 const express = require('express');
-const session = require('express-session');
-// const mongoose = require('mongoose');
-// const MongoStore = require('connect-mongo');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-// const passport = require('passport');
-// const promisify = require('es6-promisify');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const promisify = require('es6-promisify');
 const expressValidator = require('express-validator');
-
 const path = require('path');
 
 // local
-const routes = require('./routes/index');
 const helpers = require('./helpers');
 const constants = require('./constants');
 const errorHandlers = require('./handlers/errorHandlers');
+
+// routes
+const indexRoutes = require('./routes/index');
+const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
+const brotherRoutes = require('./routes/brother');
+const fulltimeRoutes = require('./routes/fulltime');
+const internshipRoutes = require('./routes/internship');
+const regformRoutes = require('./routes/regform');
 
 // create Express app
 const app = express();
@@ -33,22 +37,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // exposes a bunch of methods for validating data // TODO: do i need this?
 app.use(expressValidator());
 
-// populates req.cookies with any cookies that came along with the request
-app.use(cookieParser());
-
+// cookies
 app.use(
-  session({
-    secret: process.env.SECRET,
-    key: process.env.KEY,
-    resave: false,
-    saveUninitialized: false
-    // store: new MongoStore({ mongooseConnection: mongoose.connection })
+  cookieSession({
+    maxAge: 1 * 24 * 60 * 60 * 1000, // cookie is valid for 1 day
+    keys: [process.env.COOKIE_KEY]
   })
 );
 
 // Passport JS is used to handle logins
-// app.use(passport.initialize());
-// app.use(passport.session());
+require('./handlers/passport');
+app.use(passport.initialize());
+app.use(passport.session());
 
 // pass variables to templates & all requests
 app.use((req, res, next) => {
@@ -66,7 +66,13 @@ app.use((req, res, next) => {
 });
 
 // after all middleware, handle own routes
-app.use('/', routes);
+app.use('/', indexRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/brothers', brotherRoutes);
+app.use('/fulltimes', fulltimeRoutes);
+app.use('/internships', internshipRoutes);
+app.use('/regforms', regformRoutes);
 
 // if that doesn't work, send to a 404 page
 app.use(errorHandlers.notFound);

@@ -5,19 +5,19 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI);
 
 const Brother = require('../models/Brother');
-const FulltimeCareer = require('../models/FulltimeCareer');
-const InternCareer = require('../models/InternCareer');
+const Fulltime = require('../models/Fulltime');
+const Internship = require('../models/Internship');
 const Regform = require('../models/Regform');
 // const Application = require('../models/Application');
 
 const brothers = JSON.parse(
   fs.readFileSync(__dirname + '/brothers.json', 'utf-8')
 );
-const fulltimeCareers = JSON.parse(
-  fs.readFileSync(__dirname + '/fulltimeCareers.json', 'utf-8')
+const fulltimes = JSON.parse(
+  fs.readFileSync(__dirname + '/fulltimes.json', 'utf-8')
 );
-const internCareers = JSON.parse(
-  fs.readFileSync(__dirname + '/internCareers.json', 'utf-8')
+const internships = JSON.parse(
+  fs.readFileSync(__dirname + '/internships.json', 'utf-8')
 );
 const regforms = JSON.parse(
   fs.readFileSync(__dirname + '/regforms.json', 'utf-8')
@@ -42,28 +42,28 @@ async function loadData(name, data, model) {
 (async function() {
   if (process.argv.includes('--delete-all')) {
     await deleteData('brothers', Brother);
-    await deleteData('fulltime careers', FulltimeCareer);
-    await deleteData('intern careers', InternCareer);
+    await deleteData('fulltime careers', Fulltime);
+    await deleteData('intern careers', Internship);
     await deleteData('registration forms', Regform);
     process.exit();
   } else if (process.argv.includes('--load-all')) {
     await loadData('brothers', brothers, Brother);
-    await loadData('fulltime careers', fulltimeCareers, FulltimeCareer);
-    await loadData('intern careers', internCareers, InternCareer);
+    await loadData('fulltime careers', fulltimes, Fulltime);
+    await loadData('intern careers', internships, Internship);
     await loadData('registration forms', regforms, Regform);
     process.exit();
   } else if (process.argv.includes('--brothers')) {
     if (process.argv.includes('--delete'))
       await deleleData('brothers', Brother);
     else await loadData('brothers', brothers, Brother);
-  } else if (process.argv.includes('--fulltime')) {
+  } else if (process.argv.includes('--fulltimes')) {
     if (process.argv.includes('--delete'))
-      await deleleData('fulltime careers', FulltimeCareer);
-    else await loadData('fulltime careers', fulltimeCareers, FulltimeCareer);
+      await deleleData('fulltime careers', Fulltime);
+    else await loadData('fulltime careers', fulltimes, Fulltime);
   } else if (process.argv.includes('--intern')) {
     if (process.argv.includes('--delete'))
-      await deleteData('intern careers', InternCareer);
-    else await loadData('intern careers', internCareers, InternCareer);
+      await deleteData('intern careers', Internship);
+    else await loadData('intern careers', internships, Internship);
   } else if (process.argv.includes('--regforms')) {
     if (process.argv.includes('--delete'))
       await deleteData('registration forms', Regform);

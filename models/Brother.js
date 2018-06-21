@@ -93,7 +93,6 @@ BrotherSchema.pre('save', function(next) {
 });
 
 // Virtual Setters
-// TODO: try to add these instead of using formatToSend() ?
 
 // Virtual Getters
 

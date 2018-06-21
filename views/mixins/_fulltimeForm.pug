@@ -1,0 +1,38 @@
+mixin fulltimeForm(fulltime)
+  - const actionURL = fulltime._id ? `/fulltimes/edit/${fulltime._id}` : '/fulltimes/add';
+  form.form(action=actionURL method="POST")
+
+    if fulltime._id
+      .form-group
+        label(for="mongoId") Database ID
+        input.form-control(type="text" id="mongoId" value=fulltime._id readonly)
+
+    .form-group
+      label(for="name") Name
+      input.form-control(type="text" name="name" id="name" value=fulltime.name placeholder="Rahul Rangnekar" required)
+      small.form-text.text-muted Format: "FirstName LastName"
+
+    .form-group
+      label(for="industry") Industry
+      input.form-control(type="text" name="industry" id="industry" value=fulltime.industry placeholder="Technology" required)
+    
+    .form-group
+      label(for="company") Company
+      input.form-control(type="text" name="company" id="company" value=fulltime.company placeholder="Channelmeter" required)
+
+    .form-group
+      label(for="position") Position
+      input.form-control(type="text" name="position" id="position" value=fulltime.position placeholder="Software Engineer" required)
+
+    .form-group
+      label(for="location") Location
+      input.form-control(type="text" name="location" id="location" value=fulltime.location placeholder="San Francisco, CA" required)
+
+    .form-group
+      label(for="gradYear") Graduation Year
+      input.form-control(type="number" name="gradYear" id="gradYear" value=fulltime.gradYear min=2013 placeholder=2018 required)
+
+    .pt-4
+      input.btn.btn-primary(type="submit" value="Save")
+      - const cancelURL = h.isValid(fulltime) ? `/fulltimes/view/${fulltime._id}` : '/fulltimes';
+      a.btn.btn-danger.float-right(href=cancelURL) Cancel

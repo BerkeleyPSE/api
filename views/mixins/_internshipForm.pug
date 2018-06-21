@@ -1,0 +1,38 @@
+mixin internshipForm(internship)
+  - const actionURL = internship._id ? `/internships/edit/${internship._id}` : '/internships/add';
+  form.form(action=actionURL method="POST")
+
+    if internship._id
+      .form-group
+        label(for="mongoId") Database ID
+        input.form-control(type="text" id="mongoId" value=internship._id readonly)
+
+    .form-group
+      label(for="name") Name
+      input.form-control(type="text" name="name" id="name" value=internship.name placeholder="Rahul Rangnekar" required)
+      small.form-text.text-muted Format: "FirstName LastName"
+
+    .form-group
+      label(for="industry") Industry
+      input.form-control(type="text" name="industry" id="industry" value=internship.industry placeholder="Technology" required)
+    
+    .form-group
+      label(for="company") Company
+      input.form-control(type="text" name="company" id="company" value=internship.company placeholder="Channelmeter" required)
+
+    .form-group
+      label(for="position") Position
+      input.form-control(type="text" name="position" id="position" value=internship.position placeholder="Software Engineer" required)
+
+    .form-group
+      label(for="location") Location
+      input.form-control(type="text" name="location" id="location" value=internship.location placeholder="San Francisco, CA" required)
+
+    .form-group
+      label(for="summerYear") Summer Year
+      input.form-control(type="number" name="summerYear" id="summerYear" value=internship.summerYear min=2013 placeholder=2018 required)
+
+    .pt-4
+      input.btn.btn-primary(type="submit" value="Save")
+      - const cancelURL = h.isValid(internship) ? `/internships/view/${internship._id}` : '/internships';
+      a.btn.btn-danger.float-right(href=cancelURL) Cancel

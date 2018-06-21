@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 #{type.toUpperCase()}
+  ul.list-group.w-100
+    each d in data
+      li.list-group-item
+        a(href=`/${type}/view/${d._id}`)= d.name
+  hr
+  span.count #{count} #{type}

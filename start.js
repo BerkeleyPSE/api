@@ -10,9 +10,10 @@ mongoose.connection.on('error', err => {
 });
 
 // import models
+require('./models/User');
 require('./models/Brother');
-require('./models/FulltimeCareer');
-require('./models/InternCareer');
+require('./models/Fulltime');
+require('./models/Internship');
 require('./models/Regform');
 
 const app = require('./app');

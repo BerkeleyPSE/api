@@ -1,7 +1,7 @@
 // node modules
 const mongoose = require('mongoose');
 
-const InternCareerSchema = new mongoose.Schema({
+const InternshipSchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'You must provide a name.',
@@ -44,9 +44,9 @@ const InternCareerSchema = new mongoose.Schema({
   }
 });
 
-InternCareerSchema.pre('save', function(next) {
+InternshipSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();
 });
 
-module.exports = mongoose.model('InternCareer', InternCareerSchema);
+module.exports = mongoose.model('Internship', InternshipSchema);
