@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Rahul Rangnekar",
+    "email": "rrangnekar@berkeley.edu",
+    "phone": "909-575-7133",
+    "year": 4,
+    "major": "Computer Science & Economics",
+    "minor": "Industrial Engineering",
+    "commitments": "Pi Sigma Epsilon marketing & sales fraternity",
+    "freeWeekend": "Eat food and go rock climbing",
+    "inviteOnly": "Yes",
+    "interview1": "09/04 @ 12pm-3pm",
+    "interview2": "09/05 @ 9am-12pm",
+    "pmtAvailability": "Yes",
+    "hear": "Website",
+    "addInfo": "Thanks!"
+  },
+  {
+    "name": "Silky Rangnekar",
+    "email": "srangnekar@berkeley.edu",
+    "phone": "909-111-1111",
+    "year": 4,
+    "major": "Cognitive Science",
+    "commitments": "I tore my ACLs",
+    "freeWeekend": "Chase cats!",
+    "inviteOnly": "No",
+    "interview1": "09/06 @ 12pm-3pm",
+    "interview2": "09/01 @ 9am-12pm",
+    "pmtAvailability": "No",
+    "hear": "I am a dog",
+    "addInfo": "Thanks!"
+  }
+]

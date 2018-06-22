@@ -8,7 +8,7 @@ const Brother = require('../models/Brother');
 const Fulltime = require('../models/Fulltime');
 const Internship = require('../models/Internship');
 const Regform = require('../models/Regform');
-// const Application = require('../models/Application');
+const Application = require('../models/Application');
 
 const brothers = JSON.parse(
   fs.readFileSync(__dirname + '/brothers.json', 'utf-8')
@@ -21,6 +21,9 @@ const internships = JSON.parse(
 );
 const regforms = JSON.parse(
   fs.readFileSync(__dirname + '/regforms.json', 'utf-8')
+);
+const applications = JSON.parse(
+  fs.readFileSync(__dirname + '/applications.json', 'utf-8')
 );
 
 async function deleteData(name, model) {
@@ -45,12 +48,14 @@ async function loadData(name, data, model) {
     await deleteData('fulltime careers', Fulltime);
     await deleteData('intern careers', Internship);
     await deleteData('registration forms', Regform);
+    await deleteData('application forms', Application);
     process.exit();
   } else if (process.argv.includes('--load-all')) {
     await loadData('brothers', brothers, Brother);
     await loadData('fulltime careers', fulltimes, Fulltime);
     await loadData('intern careers', internships, Internship);
     await loadData('registration forms', regforms, Regform);
+    await loadData('application forms', applications, Application);
     process.exit();
   } else if (process.argv.includes('--brothers')) {
     if (process.argv.includes('--delete'))
@@ -69,7 +74,9 @@ async function loadData(name, data, model) {
       await deleteData('registration forms', Regform);
     else await loadData('registration forms', regforms, Regform);
   } else if (process.argv.includes('--applications')) {
-    console.log('not yet implemented');
+    if (process.argv.includes('--delete'))
+      await deleteData('application forms', Application);
+    else await loadData('application forms', applications, Application);
   } else {
     console.log('invalid arguments');
   }

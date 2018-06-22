@@ -4,6 +4,16 @@ const Brother = mongoose.model('Brother');
 
 const MEDIA_URLS = ['linkedin', 'twitter', 'medium', 'website', 'github'];
 
+const error400 = {
+  status: 400,
+  message: 'The provided ID is invalid.'
+};
+
+const error404 = {
+  status: 404,
+  message: 'That Brother was not found.'
+};
+
 /*** INTERNAL API ***/
 
 exports.getAllInt = async (req, res) => {
@@ -11,7 +21,7 @@ exports.getAllInt = async (req, res) => {
   const brothersPromise = Brother.find({}, fields).sort({ name: 1 });
   const countPromise = Brother.count();
   const [brothers, count] = await Promise.all([brothersPromise, countPromise]);
-  res.render('dataList', { data: brothers, type: 'brothers', count });
+  return res.render('dataList', { data: brothers, type: 'brothers', count });
 };
 
 exports.create = async (req, res) => {
@@ -21,21 +31,24 @@ exports.create = async (req, res) => {
 };
 
 exports.view = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    return res.render('error', { ...error400 });
   const brother = await Brother.findById(req.params.id);
-  if (h.isNotValid(brother)) res.sendStatus(404);
-  res.render('dataView', { data: brother, type: 'brothers' });
+  if (h.isNotValid(brother)) return res.render('error', { ...error404 });
+  return res.render('dataView', { data: brother, type: 'brothers' });
 };
 
 exports.update = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    return res.render('error', { ...error400 });
   const brother = await Brother.findById(req.params.id);
-  if (h.isNotValid(brother)) res.sendStatus(404);
-  res.render('dataEdit', { data: brother, type: 'brothers' });
+  if (h.isNotValid(brother)) return res.render('error', { ...error404 });
+  return res.render('dataEdit', { data: brother, type: 'brothers' });
 };
 
 exports.updateById = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    return res.render('error', { ...error400 });
   req.body = { ...req.body, ...formatToSave(req.body) };
   const brother = await Brother.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -45,9 +58,10 @@ exports.updateById = async (req, res) => {
 };
 
 exports.deleteById = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    return res.render('error', { ...error400 });
   const brother = await Brother.findByIdAndRemove(req.params.id);
-  if (h.isNotValid(brother)) res.sendStatus(404);
+  if (h.isNotValid(brother)) return res.render('error', { ...error404 });
   res.redirect('/brothers');
 };
 

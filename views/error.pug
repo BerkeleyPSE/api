@@ -1,4 +1,9 @@
-.content
-  h2= status
+extends layout
+
+block content
+  h2 That's a #{status}.
   p= message
-pre!= stackHighlighted
+  if stackHighlighted
+    pre!= stackHighlighted
+  if status===401
+    a.btn.btn-primary.mt-3(href="/auth/google") Sign In with Google

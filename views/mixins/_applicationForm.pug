@@ -1,0 +1,66 @@
+mixin applicationForm(app)
+  form.form
+
+    .form-group
+      label(for="mongoId") Database ID
+      input.form-control(type="text" id="mongoId" value=app._id readonly)
+
+    .form-group
+      label(for="name") Name
+      input.form-control(type="text" name="name" id="name" value=app.name required disabled)
+
+    .form-group
+      label(for="email") Email
+      input.form-control(type="email" name="email" value=app.email required disabled)
+
+    .form-group
+      label(for="phone") Phone Number
+      input.form-control(type="tel" name="phone" id="phone" value=app.phone required disabled)
+
+    .form-group
+      label(for="year") Year
+      input.form-control(type="text" name="year" id="year" value=app.year required disabled)
+
+    .form-group
+      label(for="major") Major(s)
+      input.form-control(type="text" name="major" id="major" value=app.major required disabled)
+
+    .form-group
+      label(for="minor") Minor(s)
+      input.form-control(type="text" name="minor" id="minor" value=app.minor disabled)
+
+    .form-group
+      label(for="commitments") Commitments
+      textarea.form-control(name="commitments" id="commitments" required disabled)= app.commitments
+
+    .form-group
+      label(for="freeWeekend") What would you do in a free weekend?
+      textarea.form-control(name="freeWeekend" id="freeWeekend" required disabled)= app.freeWeekend
+
+    .form-group
+      label(for="inviteOnly") Are you available for our Invite Only event?
+      input.form-control(type="text" name="inviteOnly" id="inviteOnly" value=app.inviteOnly required disabled)
+
+    .form-group
+      label(for="interview1") Interview Slot: First Choice
+      input.form-control(type="text" name="interview1" id="interview1" value=app.interview1 required disabled)
+
+    .form-group
+      label(for="interview2") Interview Slot: Second Choice
+      input.form-control(type="text" name="interview2" id="interview2" value=app.interview2 required disabled)
+
+    .form-group
+      label(for="pmtAvailability") Available for PMT?
+      input.form-control(type="text" name="pmtAvailability" id="pmtAvailability" value=app.pmtAvailability required disabled)
+
+    .form-group
+      label(for="hear") How did you hear about us?
+      input.form-control(type="text" name="hear" id="hear" value=app.hear required disabled)  
+
+    .form-group
+      label(for="addInfo") Additional Information
+      textarea.form-control(name="addInfo" id="addInfo" required disabled)= app.addInfo
+
+    .form-group
+      label(for="submissionTime") Submission Time
+      input.form-control(type="text" name="submissionTime" id="submissionTime" value=h.fmtDate(app.submissionTime) required disabled)

@@ -5,6 +5,7 @@ include mixins/_fulltimeForm
 include mixins/_internshipForm
 include mixins/_userForm
 include mixins/_registrationForm
+include mixins/_applicationForm
 
 //- TODO: add updatedAt fields to all forms
 
@@ -39,3 +40,7 @@ block content
   if type==='regforms'
     h2 View Registration Form: #{data.name}
     +registrationForm(data || {})
+
+  if type==='applications'
+    h2 View Application Form: #{data.name}
+    +applicationForm(data || {})

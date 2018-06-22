@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { catchErrors } = require('../handlers/errorHandlers');
-const controller = require('../controllers/regform');
+const controller = require('../controllers/application');
 const rL = require('../handlers/requireLogin');
 const aCE = require('../handlers/assertCanEdit');
 

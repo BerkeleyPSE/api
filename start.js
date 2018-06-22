@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('newrelic');
 
 // import environmental variables from variables.env file
 require('dotenv').config({ path: 'variables.env' });
@@ -15,6 +16,7 @@ require('./models/Brother');
 require('./models/Fulltime');
 require('./models/Internship');
 require('./models/Regform');
+require('./models/Application');
 
 const app = require('./app');
 app.set('port', process.env.PORT || 8000);

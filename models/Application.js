@@ -23,12 +23,11 @@ const ApplicationSchema = new mongoose.Schema({
   },
 
   year: {
-    type: {
-      label: String,
-      value: String
-    },
+    type: Number,
     required: true,
-    trim: true
+    trim: true,
+    min: 1,
+    max: 5
   },
 
   major: {
@@ -39,7 +38,6 @@ const ApplicationSchema = new mongoose.Schema({
 
   minor: {
     type: String,
-    required: true,
     trim: true
   },
 
@@ -56,53 +54,37 @@ const ApplicationSchema = new mongoose.Schema({
   },
 
   inviteOnly: {
-    type: {
-      label: String,
-      value: String
-    },
+    type: String,
     required: true,
     trim: true
   },
 
   interview1: {
-    type: {
-      label: String,
-      value: String
-    },
+    type: String,
     required: true,
     trim: true
   },
 
   interview2: {
-    type: {
-      label: String,
-      value: String
-    },
+    type: String,
     required: true,
     trim: true
   },
 
   pmtAvailability: {
-    type: {
-      label: String,
-      value: String
-    },
+    type: String,
     required: true,
     trim: true
   },
 
   hear: {
-    type: {
-      label: String,
-      value: String
-    },
+    type: String,
     required: true,
     trim: true
   },
 
-  additionalInformation: {
+  addInfo: {
     type: String,
-    required: true,
     trim: true
   },
 

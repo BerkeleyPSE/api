@@ -2,6 +2,16 @@ const mongoose = require('mongoose');
 const h = require('../helpers');
 const Fulltime = mongoose.model('Fulltime');
 
+const error400 = {
+  status: 400,
+  message: 'The provided ID is invalid.'
+};
+
+const error404 = {
+  status: 404,
+  message: 'That Internship was not found.'
+};
+
 /*** INTERNAL API ***/
 
 exports.getAllInt = async (req, res) => {
@@ -12,7 +22,7 @@ exports.getAllInt = async (req, res) => {
     fulltimesPromise,
     countPromise
   ]);
-  res.render('dataList', { data: fulltimes, type: 'fulltimes', count });
+  return res.render('dataList', { data: fulltimes, type: 'fulltimes', count });
 };
 
 exports.create = async (req, res) => {
@@ -21,21 +31,24 @@ exports.create = async (req, res) => {
 };
 
 exports.view = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const fulltime = await Fulltime.findById(req.params.id);
-  if (h.isNotValid(fulltime)) res.sendStatus(404);
-  res.render('dataView', { data: fulltime, type: 'fulltimes' });
+  if (h.isNotValid(fulltime)) res.redirect('error', { ...error404 });
+  return res.render('dataView', { data: fulltime, type: 'fulltimes' });
 };
 
 exports.update = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const fulltime = await Fulltime.findById(req.params.id);
-  if (h.isNotValid(fulltime)) res.sendStatus(404);
-  res.render('dataEdit', { data: fulltime, type: 'fulltimes' });
+  if (h.isNotValid(fulltime)) res.redirect('error', { ...error404 });
+  return res.render('dataEdit', { data: fulltime, type: 'fulltimes' });
 };
 
 exports.updateById = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const fulltime = await Fulltime.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
@@ -44,9 +57,10 @@ exports.updateById = async (req, res) => {
 };
 
 exports.deleteById = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const fulltime = await Fulltime.findByIdAndRemove(req.params.id);
-  if (h.isNotValid(fulltime)) res.sendStatus(404);
+  if (h.isNotValid(fulltime)) res.redirect('error', { ...error404 });
   res.redirect('/fulltimes');
 };
 

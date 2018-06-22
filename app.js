@@ -19,6 +19,7 @@ const brotherRoutes = require('./routes/brother');
 const fulltimeRoutes = require('./routes/fulltime');
 const internshipRoutes = require('./routes/internship');
 const regformRoutes = require('./routes/regform');
+const applicationRoutes = require('./routes/application');
 
 // create Express app
 const app = express();
@@ -73,6 +74,7 @@ app.use('/brothers', brotherRoutes);
 app.use('/fulltimes', fulltimeRoutes);
 app.use('/internships', internshipRoutes);
 app.use('/regforms', regformRoutes);
+app.use('/applications', applicationRoutes);
 
 // if that doesn't work, send to a 404 page
 app.use(errorHandlers.notFound);

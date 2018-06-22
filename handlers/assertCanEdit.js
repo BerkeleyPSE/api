@@ -5,4 +5,9 @@ const includes = require('lodash/includes');
 const { editEmails } = require('./allowedEmails');
 
 module.exports = (req, res, next) =>
-  includes(editEmails, req.user.email) ? next() : res.sendStatus(401);
+  includes(editEmails, req.user.email)
+    ? next()
+    : res.render('error', {
+        status: 401,
+        message: 'You are not allowed to make edits.'
+      });

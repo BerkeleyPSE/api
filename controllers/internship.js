@@ -3,6 +3,16 @@ const mongoose = require('mongoose');
 const h = require('../helpers');
 const Internship = mongoose.model('Internship');
 
+const error400 = {
+  status: 400,
+  message: 'The provided ID is invalid.'
+};
+
+const error404 = {
+  status: 404,
+  message: 'That Internship was not found.'
+};
+
 /*** INTERNAL API ***/
 
 exports.getAllInt = async (req, res) => {
@@ -13,7 +23,11 @@ exports.getAllInt = async (req, res) => {
     internshipsPromise,
     countPromise
   ]);
-  res.render('dataList', { data: internships, type: 'internships', count });
+  return res.render('dataList', {
+    data: internships,
+    type: 'internships',
+    count
+  });
 };
 
 exports.create = async (req, res) => {
@@ -22,21 +36,24 @@ exports.create = async (req, res) => {
 };
 
 exports.view = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const internship = await Internship.findById(req.params.id);
-  if (h.isNotValid(internship)) res.sendStatus(404);
-  res.render('dataView', { data: internship, type: 'internships' });
+  if (h.isNotValid(internship)) res.redirect('error', { ...error404 });
+  return res.render('dataView', { data: internship, type: 'internships' });
 };
 
 exports.update = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const internship = await Internship.findById(req.params.id);
-  if (h.isNotValid(internship)) res.sendStatus(404);
-  res.render('dataEdit', { data: internship, type: 'internships' });
+  if (h.isNotValid(internship)) res.redirect('error', { ...error404 });
+  return res.render('dataEdit', { data: internship, type: 'internships' });
 };
 
 exports.updateById = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const internship = await Internship.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -49,9 +66,10 @@ exports.updateById = async (req, res) => {
 };
 
 exports.deleteById = async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    res.redirect('error', { ...error400 });
   const internship = await Internship.findByIdAndRemove(req.params.id);
-  if (h.isNotValid(internship)) res.sendStatus(404);
+  if (h.isNotValid(internship)) res.redirect('error', { ...error404 });
   res.redirect('/internships');
 };
 
