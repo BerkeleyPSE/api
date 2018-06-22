@@ -17,19 +17,25 @@ html
               br
               span API
           ul.sidebar__list.px-3.my-2
-            li.m-2
+            li.mx-2.my-3
               a.sidebar__link(href="/") Home
-            li.m-2
-              a.sidebar__link(href="/brothers") Brothers
-            li.m-2
-              a.sidebar__link(href="/fulltimes") Fulltimes
-            li.m-2
-              a.sidebar__link(href="/internships") Internships
-            li.m-2
+            li.mx-2.my-3
+              .d-flex.flex-row.justify-content-between.align-items-center
+                a.sidebar__link(href="/brothers") Brothers
+                a.btn.btn-outline-primary.btn-sm(href="/brothers/add") Add
+            li.mx-2.my-3
+              .d-flex.flex-row.justify-content-between.align-items-center
+                a.sidebar__link(href="/fulltimes") Fulltimes
+                a.btn.btn-outline-primary.btn-sm(href="/fulltimes/add") Add
+            li.mx-2.my-3
+              .d-flex.flex-row.justify-content-between.align-items-center
+                a.sidebar__link(href="/internships") Internships
+                a.btn.btn-outline-primary.btn-sm(href="/internships/add") Add
+            li.mx-2.my-3
               a.sidebar__link.disabled(href="/regforms") Registration Forms
-            li.m-2
+            li.mx-2.my-3
               a.sidebar__link.disabled(href="/applications") Applications
-            li.m-2
+            li.mx-2.my-3
               a.sidebar__link.disabled(href="/users") Users
           hr
           .profile.px-3
