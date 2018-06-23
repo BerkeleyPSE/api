@@ -33,7 +33,9 @@ exports.create = async (req, res) => {
 exports.view = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id))
     return res.render('error', { ...error400 });
-  const brother = await Brother.findById(req.params.id);
+  const brother = (await Brother.findById(req.params.id)).toJSON({
+    virtuals: true
+  });
   if (h.isNotValid(brother)) return res.render('error', { ...error404 });
   return res.render('dataView', { data: brother, type: 'brothers' });
 };
@@ -41,7 +43,9 @@ exports.view = async (req, res) => {
 exports.update = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id))
     return res.render('error', { ...error400 });
-  const brother = await Brother.findById(req.params.id);
+  const brother = (await Brother.findById(req.params.id)).toJSON({
+    virtuals: true
+  });
   if (h.isNotValid(brother)) return res.render('error', { ...error404 });
   return res.render('dataEdit', { data: brother, type: 'brothers' });
 };
@@ -68,7 +72,7 @@ exports.deleteById = async (req, res) => {
 /*** EXTERNAL API ***/
 
 exports.getAllExt = async (req, res) => {
-  const fields = h.getFields(req);
+  const fields = h.getFields(req) || 'name _id position key';
   const brothersPromise = Brother.find({}, fields).sort({ name: 1 });
   const countPromise = Brother.count();
   const [brothers, count] = await Promise.all([brothersPromise, countPromise]);

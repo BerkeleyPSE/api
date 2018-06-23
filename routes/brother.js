@@ -5,6 +5,7 @@ const { catchErrors } = require('../handlers/errorHandlers');
 const controller = require('../controllers/brother');
 const rL = require('../handlers/requireLogin');
 const aCE = require('../handlers/assertCanEdit');
+const addCors = require('../handlers/addCors');
 
 const router = express.Router();
 
@@ -20,10 +21,10 @@ router.post('/edit/:id', rL, aCE, catchErrors(controller.updateById));
 router.get('/delete/:id', rL, aCE, catchErrors(controller.deleteById)); // router.delete(...) returns a 404 for some reason
 
 /*** EXTERNAL API ***/
-router.get('/all', catchErrors(controller.getAllExt));
-router.get('/executives', catchErrors(controller.getExecutives));
-router.get('/id/:id', catchErrors(controller.getById));
-router.get('/key/:key', catchErrors(controller.getByKey));
-router.get('/filter', catchErrors(controller.filter));
+router.get('/all', addCors, catchErrors(controller.getAllExt));
+router.get('/executives', addCors, catchErrors(controller.getExecutives));
+router.get('/id/:id', addCors, catchErrors(controller.getById));
+router.get('/key/:key', addCors, catchErrors(controller.getByKey));
+router.get('/filter', addCors, catchErrors(controller.filter));
 
 module.exports = router;

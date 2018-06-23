@@ -114,7 +114,7 @@ mixin brotherForm(brother)
         
     .form-group
       label(for="bio") Biography
-      textarea.form-control(name="bio" id="bio")= brother.bio
+      textarea.form-control(name="bio" id="bio" required)= brother.bio
       small.form-text.text-muted This is required
 
     div Media Usernames

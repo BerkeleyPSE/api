@@ -17,7 +17,7 @@ block content
       h2 Edit Brother: #{data.name}
     else
       h2 Add Brother
-    +brotherForm(brother || {})
+    +brotherForm(data || {})
 
   if type==='fulltimes'
     if data

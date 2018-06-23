@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const promisify = require('es6-promisify');
 const expressValidator = require('express-validator');
 const path = require('path');
 
@@ -57,12 +56,6 @@ app.use((req, res, next) => {
   res.locals.co = constants;
   res.locals.user = req.user || null;
   res.locals.currentPath = req.path;
-  next();
-});
-
-// promisify some callback based APIs
-app.use((req, res, next) => {
-  // req.login = promisify(req.login, req);
   next();
 });
 

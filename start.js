@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
 require('newrelic');
+const mongoose = require('mongoose');
 
 // import environmental variables from variables.env file
 require('dotenv').config({ path: 'variables.env' });
