@@ -23,11 +23,15 @@ const ApplicationSchema = new mongoose.Schema({
   },
 
   year: {
-    type: Number,
+    type: String,
+    enum: ['Freshman', 'Sophomore', 'Junior', 'Junior Transfer', 'Senior'],
     required: true,
-    trim: true,
-    min: 1,
-    max: 5
+    trim: true
+  },
+
+  gpa: {
+    type: String,
+    required: true
   },
 
   major: {

@@ -22,6 +22,10 @@ mixin applicationForm(app)
       input.form-control(type="text" name="year" id="year" value=app.year required disabled)
 
     .form-group
+      label(for="gpa") Cumulative GPA
+      input.form-control(type="text" name="gpa" id="gpa" value=app.gpa required disabled)
+
+    .form-group
       label(for="major") Major(s)
       input.form-control(type="text" name="major" id="major" value=app.major required disabled)
 
