@@ -27,3 +27,13 @@ exports.getUsername = url => {
 exports.dump = x => JSON.stringify(x, null, 2);
 
 exports.fmtDate = date => format(date, 'MM/DD/YY @ hh:mma');
+
+exports.BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8000'
+    : 'http://api.berkeleypse.org';
+
+exports.BASE_RETURN_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'http://berkeleypse.org';

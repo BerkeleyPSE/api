@@ -44,5 +44,6 @@ exports.deleteById = async (req, res) => {
 
 exports.create = async (req, res) => {
   await new Application(req.body).save();
-  res.sendStatus(201);
+  // return res.sendStatus(201);
+  return res.render('formResponse', { name: req.body.name });
 };

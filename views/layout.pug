@@ -8,38 +8,38 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
   body
     block header
-      .d-flex.w-100
-        nav.sidebar
-          .p-3
-            h1.h3 UC Berkeley
-              br
-              span Pi Sigma Epsilon
-              br
-              span API
-          ul.sidebar__list.px-3.my-2
-            li.mx-2.my-3
-              a.sidebar__link(href="/") Home
-            li.mx-2.my-3
-              .d-flex.flex-row.justify-content-between.align-items-center
-                a.sidebar__link(href="/brothers") Brothers
-                a.btn.btn-outline-primary.btn-sm(href="/brothers/add") Add
-            li.mx-2.my-3
-              .d-flex.flex-row.justify-content-between.align-items-center
-                a.sidebar__link(href="/fulltimes") Fulltimes
-                a.btn.btn-outline-primary.btn-sm(href="/fulltimes/add") Add
-            li.mx-2.my-3
-              .d-flex.flex-row.justify-content-between.align-items-center
-                a.sidebar__link(href="/internships") Internships
-                a.btn.btn-outline-primary.btn-sm(href="/internships/add") Add
-            li.mx-2.my-3
-              a.sidebar__link.disabled(href="/regforms") Registration Forms
-            li.mx-2.my-3
-              a.sidebar__link.disabled(href="/applications") Applications
-            li.mx-2.my-3
-              a.sidebar__link.disabled(href="/users") Users
-          hr
-          .profile.px-3
-            if user
+      if user
+        .d-flex.w-100
+          nav.sidebar
+            .p-3
+              h1.h3 UC Berkeley
+                br
+                span Pi Sigma Epsilon
+                br
+                span API
+            ul.sidebar__list.px-3.my-2
+              li.mx-2.my-3
+                a.sidebar__link(href="/") Home
+              li.mx-2.my-3
+                .d-flex.flex-row.justify-content-between.align-items-center
+                  a.sidebar__link(href="/brothers") Brothers
+                  a.btn.btn-outline-primary.btn-sm(href="/brothers/add") Add
+              li.mx-2.my-3
+                .d-flex.flex-row.justify-content-between.align-items-center
+                  a.sidebar__link(href="/fulltimes") Fulltimes
+                  a.btn.btn-outline-primary.btn-sm(href="/fulltimes/add") Add
+              li.mx-2.my-3
+                .d-flex.flex-row.justify-content-between.align-items-center
+                  a.sidebar__link(href="/internships") Internships
+                  a.btn.btn-outline-primary.btn-sm(href="/internships/add") Add
+              li.mx-2.my-3
+                a.sidebar__link.disabled(href="/regforms") Registration Forms
+              li.mx-2.my-3
+                a.sidebar__link.disabled(href="/applications") Applications
+              li.mx-2.my-3
+                a.sidebar__link.disabled(href="/users") Users
+            hr
+            .profile.px-3
               .profile
                 .profile__title.text-center Your Profile
                 .profile__name.my-1 #{user.name}
@@ -47,8 +47,6 @@ html
                 .profile__role.my-1 Role: #{user.role}
                 .profile__logout.text-center.mt-4
                   a.btn.btn-primary(href="/auth/logout") Logout
-            else
-              p.text-center You are not logged in.
 
     .content
       block content

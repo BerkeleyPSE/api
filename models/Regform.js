@@ -15,7 +15,6 @@ const RegformSchema = new mongoose.Schema({
     required: 'You must provide an email.',
     trim: true,
     lowercase: true,
-    unique: true,
     validate: [validator.isEmail, 'Email address is invalid.']
   },
 
