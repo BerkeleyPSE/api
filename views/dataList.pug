@@ -7,4 +7,8 @@ block content
       li.list-group-item
         a(href=`/${type}/view/${d._id}`)= d.name
   hr
-  span.count #{count} #{type}
+  div.count #{count} #{type}
+
+  if type==='brothers'
+    .mt-3
+      a.btn.btn-primary(href="/brothers/update/active") Make all brothers visible

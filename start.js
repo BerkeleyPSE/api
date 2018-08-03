@@ -1,4 +1,3 @@
-require('newrelic');
 const mongoose = require('mongoose');
 
 // import environmental variables from variables.env file

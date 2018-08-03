@@ -18,6 +18,12 @@ const BrotherSchema = new mongoose.Schema({
     unique: true
   },
 
+  isActive: {
+    type: Boolean,
+    default: true,
+    required: true
+  },
+
   pseClass: {
     type: String,
     required: 'You must provide a PSE Class.'

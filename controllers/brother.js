@@ -69,11 +69,18 @@ exports.deleteById = async (req, res) => {
   res.redirect('/brothers');
 };
 
+exports.setAllActiveTrue = async (req, res) => {
+  await Brother.updateMany({}, { $set: { isActive: true } });
+  res.redirect('/brothers');
+};
+
 /*** EXTERNAL API ***/
 
 exports.getAllExt = async (req, res) => {
   const fields = h.getFields(req) || 'name _id position key';
-  const brothersPromise = Brother.find({}, fields).sort({ name: 1 });
+  const brothersPromise = Brother.find({ isActive: true }, fields).sort({
+    name: 1
+  });
   const countPromise = Brother.count();
   const [brothers, count] = await Promise.all([brothersPromise, countPromise]);
   res.json({ data: brothers, count });
@@ -81,7 +88,10 @@ exports.getAllExt = async (req, res) => {
 
 exports.getExecutives = async (req, res) => {
   const fields = h.getFields(req);
-  const executives = await Brother.find({ isExecutive: true }, fields).exec();
+  const executives = await Brother.find(
+    { isExecutive: true, isActive: true },
+    fields
+  ).exec();
   res.json({ data: executives, count: executives.length });
 };
 

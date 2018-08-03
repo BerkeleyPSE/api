@@ -15,6 +15,16 @@ mixin brotherForm(brother)
         input.form-control(type="text" id="mongoId" value=brother._id readonly)
     
     .form-group
+      label(for="isActive") Is Visible?
+      .form-check
+        input.form-check-input(type="radio" name="isActive" id="isActive-yes" value=(true).toString() checked=brother.isActive===true)
+        label.form-check-label(for="isActive-yes") Yes
+      .form-check
+        input.form-check-input(type="radio" name="isActive" id="isActive-no" value=(false).toString() checked=brother.isActive!==true)
+        label.form-check-label(for="isActive-no") No
+      small.form-text.text-muted Select "No" if a brother is inactive for the semester or you need to update their data
+
+    .form-group
       label(for="name") Name
       input.form-control(type="text" name="name" id="name" value=brother.name placeholder="Rahul Rangnekar" required)
       small.form-text.text-muted Format: "FirstName LastName"
@@ -36,13 +46,13 @@ mixin brotherForm(brother)
         each y in years
           option(value=y.value selected=(brother.year || {}).value===y.value) #{y.label}
 
-    .form-group Is Executive?
-      //- use == and != because brother.isExecutive value in database is Boolean, not String
+    .form-group 
+      label(for="isExecutive") Is Executive?
       .form-check
-        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-no" value=(false).toString() checked=brother.isExecutive!='true')
+        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-no" value=(false).toString() checked=brother.isExecutive!==true)
         label.form-check-label(for="isExecutive-no") No
       .form-check
-        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-yes" value=(true).toString() checked=brother.isExecutive=='true')
+        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-yes" value=(true).toString() checked=brother.isExecutive===true)
         label.form-check-label(for="isExecutive-yes") Yes
 
     .form-group

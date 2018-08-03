@@ -19,6 +19,7 @@ router.get('/view/:id', rL, catchErrors(controller.view));
 router.get('/edit/:id', rL, aCE, catchErrors(controller.update));
 router.post('/edit/:id', rL, aCE, catchErrors(controller.updateById));
 router.get('/delete/:id', rL, aCE, catchErrors(controller.deleteById)); // router.delete(...) returns a 404 for some reason
+router.get('/update/active', rL, aCE, catchErrors(controller.setAllActiveTrue));
 
 /*** EXTERNAL API ***/
 router.get('/all', addCors, catchErrors(controller.getAllExt));
