@@ -16,7 +16,7 @@ const error404 = {
 /*** INTERNAL API ***/
 
 exports.getAllInt = async (req, res) => {
-  const fields = 'name _id';
+  const fields = 'name _id summerYear';
   const internshipsPromise = Internship.find({}, fields).sort({ name: 1 });
   const countPromise = Internship.count();
   const [internships, count] = await Promise.all([
@@ -40,7 +40,11 @@ exports.view = async (req, res) => {
     res.redirect('error', { ...error400 });
   const internship = await Internship.findById(req.params.id);
   if (h.isNotValid(internship)) res.redirect('error', { ...error404 });
-  return res.render('dataView', { data: internship, type: 'internships' });
+  return res.render('dataForm', {
+    data: internship,
+    type: 'internships',
+    disabled: true
+  });
 };
 
 exports.update = async (req, res) => {
@@ -48,7 +52,11 @@ exports.update = async (req, res) => {
     res.redirect('error', { ...error400 });
   const internship = await Internship.findById(req.params.id);
   if (h.isNotValid(internship)) res.redirect('error', { ...error404 });
-  return res.render('dataEdit', { data: internship, type: 'internships' });
+  return res.render('dataForm', {
+    data: internship,
+    type: 'internships',
+    disabled: false
+  });
 };
 
 exports.updateById = async (req, res) => {

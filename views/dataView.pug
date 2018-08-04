@@ -1,7 +1,0 @@
-extends layout
-
-block content
-  pre= h.dump(data)
-  div
-    a.btn.btn-primary(href=`/${type}/edit/${data._id}`) Edit
-    a.btn.btn-danger.float-right(href=`/${type}/delete/${data._id}`) Delete

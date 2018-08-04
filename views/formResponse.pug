@@ -2,7 +2,7 @@ extends layout
 
 block content
   - const returnURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/app' : 'http://berkeleypse.org/app';
-  img(src="http://www.berkeleypse.org/images/logo.png" height="300px")
+  img(src="https://res.cloudinary.com/berkeleypse-tech/image/upload/f_auto,fl_force_strip,q_auto:best/app/logo" height="300px")
   h2 Thanks for your submission, #{name}!
   p You may now close this window.
-  a.btn.btn-primary(href=returnURL) Go Back
+  a.mt-3.btn.btn-primary(href=returnURL) Go Back

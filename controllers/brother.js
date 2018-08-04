@@ -37,7 +37,11 @@ exports.view = async (req, res) => {
     virtuals: true
   });
   if (h.isNotValid(brother)) return res.render('error', { ...error404 });
-  return res.render('dataView', { data: brother, type: 'brothers' });
+  return res.render('dataForm', {
+    data: brother,
+    type: 'brothers',
+    disabled: true
+  });
 };
 
 exports.update = async (req, res) => {
@@ -47,7 +51,11 @@ exports.update = async (req, res) => {
     virtuals: true
   });
   if (h.isNotValid(brother)) return res.render('error', { ...error404 });
-  return res.render('dataEdit', { data: brother, type: 'brothers' });
+  return res.render('dataForm', {
+    data: brother,
+    type: 'brothers',
+    disabled: false
+  });
 };
 
 exports.updateById = async (req, res) => {
@@ -69,8 +77,22 @@ exports.deleteById = async (req, res) => {
   res.redirect('/brothers');
 };
 
-exports.setAllActiveTrue = async (req, res) => {
-  await Brother.updateMany({}, { $set: { isActive: true } });
+exports.setAllActive = async (req, res) => {
+  const { value } = req.params;
+  if (!value)
+    return res.render('error', {
+      status: 404,
+      message: "That's an invalid route."
+    });
+  if (value === 'true')
+    await Brother.updateMany({}, { $set: { isActive: true } });
+  else if (value === 'false')
+    await Brother.updateMany({}, { $set: { isActive: false } });
+  else
+    return res.render('error', {
+      status: 404,
+      message: "That's an invalid route."
+    });
   res.redirect('/brothers');
 };
 

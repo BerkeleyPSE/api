@@ -1,14 +1,32 @@
 extends layout
 
 block content
-  h2 #{type.toUpperCase()}
-  ul.list-group.w-100
-    each d in data
-      li.list-group-item
-        a(href=`/${type}/view/${d._id}`)= d.name
-  hr
-  div.count #{count} #{type}
+  - const title = type ? type.charAt(0).toUpperCase() + type.slice(1) : ''
+  h2 #{title}
+  .row
+    .col-xs-12.col-md-4
+      ul.list-group.w-100
+        each d in data
+          li.list-group-item.d-flex.flex-row.align-items-center.justify-content-between
+            a(href=`/${type}/view/${d._id}`)= d.name
 
-  if type==='brothers'
-    .mt-3
-      a.btn.btn-primary(href="/brothers/update/active") Make all brothers visible
+            if (type === 'fulltimes')
+              span.mx-1 (#{d.gradYear})
+            
+            if (type === 'internships')
+              span.mx-1 (#{d.summerYear})
+            
+            if (type === 'applications')
+              a.btn.btn-outline-danger.btn-sm(href=`/applications/delete/${d._id}`) Delete
+
+            if (type === 'regforms')
+              a.btn.btn-outline-danger.btn-sm(href=`/regforms/delete/${d._id}`) Delete 
+
+      hr
+      div.count #{count} #{type}
+
+    .col-xs-12.col-md-6
+      if type==='brothers'
+        a.btn.btn-primary(href="/brothers/update/active/true") Make all brothers visible
+        br
+        a.btn.btn-secondary.my-3(href="/brothers/update/active/false") Make all brothers invisible

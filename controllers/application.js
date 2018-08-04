@@ -30,7 +30,7 @@ exports.view = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
   const application = await Application.findById(req.params.id);
   if (h.isNotValid(application)) return res.render('error', { ...error404 });
-  return res.render('dataEdit', { data: application, type: 'applications' });
+  return res.render('dataForm', { data: application, type: 'applications' });
 };
 
 exports.deleteById = async (req, res) => {

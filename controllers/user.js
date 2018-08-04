@@ -16,5 +16,5 @@ exports.view = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
   const user = await User.findById(req.params.id);
   if (h.isNotValid(user)) res.sendStatus(404);
-  res.render('dataEdit', { data: user, type: 'users' });
+  res.render('dataForm', { data: user, type: 'users' });
 };

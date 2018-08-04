@@ -1,5 +1,10 @@
 mixin internshipForm(internship)
   - const actionURL = internship._id ? `/internships/edit/${internship._id}` : '/internships/add';
+  
+  if disabled
+    div.my-1.text-info
+      | Scroll down to "Edit" this brother
+  
   form.form(action=actionURL method="POST")
 
     if internship._id
@@ -32,7 +37,8 @@ mixin internshipForm(internship)
       label(for="summerYear") Summer Year
       input.form-control(type="number" name="summerYear" id="summerYear" value=internship.summerYear min=2013 placeholder=2018 required)
 
-    .pt-4
-      input.btn.btn-primary(type="submit" value="Save")
-      - const cancelURL = h.isValid(internship) ? `/internships/view/${internship._id}` : '/internships';
-      a.btn.btn-danger.float-right(href=cancelURL) Cancel
+    if !disabled
+      .pt-4
+        input.btn.btn-primary(type="submit" value="Save")
+        - const cancelURL = h.isValid(internship) ? `/internships/view/${internship._id}` : '/internships';
+        a.btn.btn-danger.float-right(href=cancelURL) Cancel

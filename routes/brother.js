@@ -12,14 +12,19 @@ const router = express.Router();
 /*** INTERNAL API ***/
 router.get('/', rL, catchErrors(controller.getAllInt));
 router.get('/add', rL, aCE, (req, res) =>
-  res.render('dataEdit', { type: 'brothers' })
+  res.render('dataForm', { type: 'brothers', disabled: false })
 );
 router.post('/add', rL, aCE, catchErrors(controller.create));
 router.get('/view/:id', rL, catchErrors(controller.view));
 router.get('/edit/:id', rL, aCE, catchErrors(controller.update));
 router.post('/edit/:id', rL, aCE, catchErrors(controller.updateById));
 router.get('/delete/:id', rL, aCE, catchErrors(controller.deleteById)); // router.delete(...) returns a 404 for some reason
-router.get('/update/active', rL, aCE, catchErrors(controller.setAllActiveTrue));
+router.get(
+  '/update/active/:value',
+  rL,
+  aCE,
+  catchErrors(controller.setAllActive)
+);
 
 /*** EXTERNAL API ***/
 router.get('/all', addCors, catchErrors(controller.getAllExt));

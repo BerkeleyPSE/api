@@ -1,0 +1,55 @@
+extends layout
+
+include mixins/_brotherForm
+include mixins/_fulltimeForm
+include mixins/_internshipForm
+include mixins/_userForm
+include mixins/_registrationForm
+include mixins/_applicationForm
+
+//- TODO: add updatedAt fields to all forms
+
+block content
+
+  a.btn.btn-secondary.my-3(href=`/${type}`) &lt; Go Back
+
+  .row
+    .col-xs-12.col-md-6
+
+      if type==='brothers'
+        if data
+          h2 Brothers &gt; #{data.name}
+        else
+          h2 Add Brother
+        +brotherForm(data || {}, disabled)
+
+      if type==='fulltimes'
+        if data
+          h2 Fulltimes &gt; #{data.name}
+        else
+          h2 Add Fulltime
+        +fulltimeForm(data || {}, disabled)
+
+      if type==='internships'
+        if data
+          h2 Internships &gt; #{data.name}
+        else
+          h2 Add Internship
+        +internshipForm(data || {}, disabled)
+      
+      if type==='users'
+        h2 Users &gt; #{data.name}
+        +userForm(data || {}, true)
+      
+      if type==='regforms'
+        h2 Registrations &gt; #{data.name}
+        +registrationForm(data || {})
+
+      if type==='applications'
+        h2 Applications &gt; #{data.name}
+        +applicationForm(data || {})
+
+      if disabled
+        div
+          a.btn.btn-primary(href=`/${type}/edit/${data._id}`) Edit
+          a.btn.btn-danger.float-right(href=`/${type}/delete/${data._id}`) Delete

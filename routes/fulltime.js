@@ -12,7 +12,7 @@ const router = express.Router();
 /*** INTERNAL API ***/
 router.get('/', rL, catchErrors(controller.getAllInt));
 router.get('/add', rL, aCE, (req, res) =>
-  res.render('dataEdit', { type: 'fulltimes' })
+  res.render('dataForm', { type: 'fulltimes', disabled: false })
 );
 router.post('/add', rL, aCE, catchErrors(controller.create));
 router.get('/view/:id', rL, catchErrors(controller.view));

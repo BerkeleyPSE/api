@@ -15,7 +15,7 @@ const error404 = {
 /*** INTERNAL API ***/
 
 exports.getAllInt = async (req, res) => {
-  const fields = 'name _id';
+  const fields = 'name _id gradYear';
   const fulltimesPromise = Fulltime.find({}, fields).sort({ name: 1 });
   const countPromise = Fulltime.count();
   const [fulltimes, count] = await Promise.all([
@@ -35,7 +35,11 @@ exports.view = async (req, res) => {
     res.redirect('error', { ...error400 });
   const fulltime = await Fulltime.findById(req.params.id);
   if (h.isNotValid(fulltime)) res.redirect('error', { ...error404 });
-  return res.render('dataView', { data: fulltime, type: 'fulltimes' });
+  return res.render('dataForm', {
+    data: fulltime,
+    type: 'fulltimes',
+    disabled: true
+  });
 };
 
 exports.update = async (req, res) => {
@@ -43,7 +47,11 @@ exports.update = async (req, res) => {
     res.redirect('error', { ...error400 });
   const fulltime = await Fulltime.findById(req.params.id);
   if (h.isNotValid(fulltime)) res.redirect('error', { ...error404 });
-  return res.render('dataEdit', { data: fulltime, type: 'fulltimes' });
+  return res.render('dataForm', {
+    data: fulltime,
+    type: 'fulltimes',
+    disabled: false
+  });
 };
 
 exports.updateById = async (req, res) => {

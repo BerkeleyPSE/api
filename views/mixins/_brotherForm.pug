@@ -1,5 +1,10 @@
-mixin brotherForm(brother)
+mixin brotherForm(brother, disabled=false)
   - const actionURL = brother._id ? `/brothers/edit/${brother._id}` : '/brothers/add';
+  
+  if disabled
+    div.my-1.text-info
+      | Scroll down to "Edit" this brother
+
   form.form(action=actionURL method='POST')
     -
       const years = co.years
@@ -17,126 +22,130 @@ mixin brotherForm(brother)
     .form-group
       label(for="isActive") Is Visible?
       .form-check
-        input.form-check-input(type="radio" name="isActive" id="isActive-yes" value=(true).toString() checked=brother.isActive===true)
+        input.form-check-input(type="radio" name="isActive" id="isActive-yes" value=(true).toString() checked=brother.isActive===true disabled=disabled)
         label.form-check-label(for="isActive-yes") Yes
       .form-check
-        input.form-check-input(type="radio" name="isActive" id="isActive-no" value=(false).toString() checked=brother.isActive!==true)
+        input.form-check-input(type="radio" name="isActive" id="isActive-no" value=(false).toString() checked=brother.isActive!==true disabled=disabled)
         label.form-check-label(for="isActive-no") No
       small.form-text.text-muted Select "No" if a brother is inactive for the semester or you need to update their data
 
     .form-group
       label(for="name") Name
-      input.form-control(type="text" name="name" id="name" value=brother.name placeholder="Rahul Rangnekar" required)
+      input.form-control(type="text" name="name" id="name" value=brother.name placeholder="Rahul Rangnekar" required disabled=disabled)
       small.form-text.text-muted Format: "FirstName LastName"
 
     .form-group
       label(for="key") Key
-      input.form-control(type="text" name="key" id="key" value=brother.key placeholder="rahul_rangnekar" required)
+      input.form-control(type="text" name="key" id="key" value=brother.key placeholder="rahul_rangnekar" required disabled=disabled)
       small.form-text.text-muted Format: "first_last" or "first_last_1" **must be unique** and match Cloudinary image name
 
     .form-group
       label(for="pseClass") PSE Class
-      select.form-control(name="pseClass" id="pseClass" required)
+      select.form-control(name="pseClass" id="pseClass" required disabled=disabled)
         each c in pseClasses
           option(value=c selected=brother.pseClass===c) #{c}      
 
     .form-group
       label(for="year") Year
-      select.form-control(name="year" id="year" required)
+      select.form-control(name="year" id="year" required disabled=disabled)
         each y in years
           option(value=y.value selected=(brother.year || {}).value===y.value) #{y.label}
 
     .form-group 
       label(for="isExecutive") Is Executive?
       .form-check
-        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-no" value=(false).toString() checked=brother.isExecutive!==true)
+        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-no" value=(false).toString() checked=brother.isExecutive!==true disabled=disabled)
         label.form-check-label(for="isExecutive-no") No
       .form-check
-        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-yes" value=(true).toString() checked=brother.isExecutive===true)
+        input.form-check-input(type="radio" name="isExecutive" id="isExecutive-yes" value=(true).toString() checked=brother.isExecutive===true disabled=disabled)
         label.form-check-label(for="isExecutive-yes") Yes
 
     .form-group
       label(for="position") Position
-      select.form-control(name="position" id="position" value=brother.position required)
+      select.form-control(name="position" id="position" value=brother.position required disabled=disabled)
         each p in positions
           option(value=p selected=brother.position===p) #{p}
 
     .form-group
       label(for="hometown") Hometown
-      input.form-control(name="hometown" id="hometown" value=brother.hometown placeholder="Claremont, CA || Toronto, Canada" required)
+      input.form-control(name="hometown" id="hometown" value=brother.hometown placeholder="Claremont, CA || Toronto, Canada" required disabled=disabled)
       small.form-text.text-muted Format: "City, State Abbreviation" or "City, Country"
     
     .form-group
       label(for="major1") Major 1
-      select.form-control(name="major1" id="major1" required)
+      select.form-control(name="major1" id="major1" required disabled=disabled)
         each m in subjects
           option(value=m selected=brother.major1===m) #{m}
       small.form-text.text-muted This is required      
 
     .form-group
       label(for="major2") Major 2
-      select.form-control(name="major2" id="major2")
+      select.form-control(name="major2" id="major2" disabled=disabled)
         each m in subjects
           option(value=m selected=brother.major2===m) #{m}      
 
     .form-group
       label(for="minor1") Minor 1
-      select.form-control(name="minor1" id="minor1")
+      select.form-control(name="minor1" id="minor1" disabled=disabled)
         each m in subjects
           option(value=m selected=brother.minor1===m) #{m}      
 
     .form-group
       label(for="minor2") Minor 2
-      select.form-control(name="minor2" id="minor2")
+      select.form-control(name="minor2" id="minor2" disabled=disabled)
         each m in subjects
           option(value=m selected=brother.minor2===m) #{m}      
 
     .form-group
       label(for="careerInterest1") Career Interest 1
-      select.form-control(name="careerInterest1" id="careerInterest1" required)
+      select.form-control(name="careerInterest1" id="careerInterest1" required disabled=disabled)
         each c in careers
           option(value=c selected=brother.careerInterest1===c) #{c}
       small.form-text.text-muted This is required
 
     .form-group
       label(for="careerInterest2") Career Interest 2
-      select.form-control(name="careerInterest2" id="careerInterest2")
+      select.form-control(name="careerInterest2" id="careerInterest2" disabled=disabled)
         each c in careers
           option(value=c selected=brother.careerInterest2===c) #{c}
 
     .form-group
       label(for="previousPosition1") Previous Position 1
-      select.form-control(name="previousPosition1" id="previousPosition1" required)
+      select.form-control(name="previousPosition1" id="previousPosition1" required disabled=disabled)
         each p in positions
           option(value=p selected=brother.previousPosition1===p) #{p}
 
     .form-group
       label(for="previousPosition2") Previous Position 2
-      select.form-control(name="previousPosition2" id="previousPosition2" required)
+      select.form-control(name="previousPosition2" id="previousPosition2" required disabled=disabled)
         each p in positions
           option(value=p selected=brother.previousPosition2===p) #{p}          
 
     .form-group
       label(for="previousPosition3") Previous Position 3
-      select.form-control(name="previousPosition3" id="previousPosition3" required)
+      select.form-control(name="previousPosition3" id="previousPosition3" required disabled=disabled)
         each p in positions
           option(value=p selected=brother.previousPosition3===p) #{p}          
         
     .form-group
       label(for="bio") Biography
-      textarea.form-control(name="bio" id="bio" required)= brother.bio
+      textarea.form-control(name="bio" id="bio" required disabled=disabled style={ height: '200px' })= brother.bio
       small.form-text.text-muted This is required
 
-    div Media Usernames
+    br
+    
+    .form-group
+      label Media Usernames
       each m in mediaOpts
-        .input-group.mb-3
-          label.mr-2(for=m.value)= m.label
+        .input-group.mb-3.d-flex.flex-row.align-items-center
+          label.mr-2.mb-0(for=m.value style={ width: '75px' })= m.label
           if h.isValid(m.href)
             .input-group-prepend
               span.input-group-text(id=`${m.value}-prepend`)= m.href
-          input.form-control(type="text" name=m.value id=m.value value=brother[m.value] placeholder=m.ph aria-describedby=`${m.value}-prepend`)
+          input.form-control(type="text" name=m.value id=m.value value=brother[m.value] placeholder=m.ph aria-describedby=`${m.value}-prepend` disabled=disabled)
     
-    .pt-4
-      input.btn.btn-primary(type="submit" value="Save")
-      - const cancelURL = h.isValid(brother) ? `/brothers/view/${brother._id}` : '/brothers';
-      a.btn.btn-danger.float-right(href=cancelURL) Cancel
+    if !disabled
+      .pt-4
+        input.btn.btn-primary(type="submit" value="Save")
+        - const cancelURL = h.isValid(brother) ? `/brothers/view/${brother._id}` : '/brothers';
+        a.btn.btn-danger.float-right(href=cancelURL) Cancel

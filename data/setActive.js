@@ -16,14 +16,9 @@ async function getKeys() {
   try {
     const keys = await getKeys();
     _.forEach(keys, async k => {
-      const b = await Brother.findOneAndUpdate(
-        { key: k },
-        { isActive: true }
-      ).exec();
-      console.log('updated active for brother: ', b.name);
+      await Brother.findOneAndUpdate({ key: k }, { isActive: true }).exec();
     });
   } catch (e) {
-    console.log('error!', e);
     process.exit();
   }
 })();

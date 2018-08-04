@@ -22,7 +22,7 @@ exports.view = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
   const regform = await Regform.findById(req.params.id);
   if (h.isNotValid(regform)) return res.render('error', { ...error404 });
-  return res.render('dataEdit', { data: regform, type: 'regforms' });
+  return res.render('dataForm', { data: regform, type: 'regforms' });
 };
 
 exports.deleteById = async (req, res) => {
