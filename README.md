@@ -10,12 +10,33 @@ Visit us at [berkeleypse.org](http://berkeleypse.org).
 
 ## Table of Contents
 
+- [Development](#development)
 - [Terminology](#terminology)
 - [Infrastructure](#infrastructure)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
 - [File Structure](#file-structure)
 - [Contributors](#contributors)
+
+---
+
+## Development
+
+After cloning this api repository and the [website repository](https://github.com/berkeleypse/website) [(see here for instructions)](#cloning-repositories), run the following.
+
+In the website directory:
+
+```bash
+yarn install # install the node modules/packages necessary to develop the website
+yarn run start # start the local development server at http://localhost:3000
+```
+
+In this api directory:
+
+```bash
+yarn install # install the node modules/packages necessary to develop the api
+yarn run dev # start the local development server at http://localhost:8000
+```
 
 ---
 
