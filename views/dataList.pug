@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  - const title = type ? type.charAt(0).toUpperCase() + type.slice(1) : ''
+  - const title = type ? type.split('-').map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(' ') : ''
   h2 #{title}
   .row
     .col-xs-12.col-md-4
@@ -21,9 +21,12 @@ block content
 
             if (type === 'regforms')
               a.btn.btn-outline-danger.btn-sm(href=`/regforms/delete/${d._id}`) Delete 
+            
+            if (type === 'coffee-chats')
+              a.btn.btn-outline-danger.btn-sm(href=`/coffee/delete/${d._id}`) Delete 
 
       hr
-      div.count #{count} #{type}
+      div.count #{count} #{title}
 
     .col-xs-12.col-md-6
       if type==='brothers'

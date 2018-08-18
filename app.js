@@ -17,6 +17,7 @@ const authRoutes = require('./routes/auth');
 const brotherRoutes = require('./routes/brother');
 const fulltimeRoutes = require('./routes/fulltime');
 const internshipRoutes = require('./routes/internship');
+const coffeeChatRoutes = require('./routes/coffeeChat');
 const regformRoutes = require('./routes/regform');
 const applicationRoutes = require('./routes/application');
 
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// exposes a bunch of methods for validating data // TODO: do i need this?
+// exposes a bunch of methods for validating data
 app.use(expressValidator());
 
 // cookies
@@ -66,6 +67,7 @@ app.use('/auth', authRoutes);
 app.use('/brothers', brotherRoutes);
 app.use('/fulltimes', fulltimeRoutes);
 app.use('/internships', internshipRoutes);
+app.use('/coffee-chat', coffeeChatRoutes);
 app.use('/regforms', regformRoutes);
 app.use('/applications', applicationRoutes);
 
@@ -78,5 +80,4 @@ if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 // production error handler
 app.use(errorHandlers.productionErrors);
 
-// done! export the app!
 module.exports = app;
