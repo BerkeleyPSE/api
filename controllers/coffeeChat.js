@@ -20,7 +20,7 @@ exports.getAll = async (req, res) => {
   if (h.isNotValid(coffeeChats)) return res.render('error', { ...error404 });
   return res.render('dataList', {
     data: coffeeChats,
-    type: 'coffee-chats',
+    type: 'coffee-chat',
     count
   });
 };
@@ -29,7 +29,7 @@ exports.view = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
   const coffeeChat = await CoffeeChat.findById(req.params.id);
   if (h.isNotValid(coffeeChat)) return res.render('error', { ...error404 });
-  return res.render('dataForm', { data: coffeeChat, type: 'coffee-chats' });
+  return res.render('dataForm', { data: coffeeChat, type: 'coffee-chat' });
 };
 
 exports.deleteById = async (req, res) => {
