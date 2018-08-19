@@ -43,5 +43,5 @@ exports.deleteById = async (req, res) => {
 
 exports.create = async (req, res) => {
   await new CoffeeChat(req.body).save();
-  return res.render('formResponse', { name: req.body.name });
+  res.sendStatus(201);
 };

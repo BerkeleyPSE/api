@@ -4,6 +4,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const expressValidator = require('express-validator');
 const path = require('path');
+const cors = require('cors');
 
 // local
 const helpers = require('./helpers');
@@ -59,6 +60,17 @@ app.use((req, res, next) => {
   res.locals.currentPath = req.path;
   next();
 });
+
+// enable CORS for submitting forms from localhost:3000 & www.berkeleypse.org
+const corsObj = {
+  origin: 'http://localhost:3000',
+  methods: 'POST',
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept']
+};
+
+app.options('/coffee-chat/add', cors(corsObj));
+app.options('/regforms/add', cors(corsObj));
+app.options('/applications/add', cors(corsObj));
 
 // after all middleware, handle own routes
 app.use('/', indexRoutes);
