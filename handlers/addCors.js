@@ -16,7 +16,8 @@ const allowOrigin = origin => {
       [
         'http://localhost:3000',
         'http://berkeleypse.org',
-        'http://www.berkeleypse.org'
+        'http://www.berkeleypse.org',
+        'http://staging.berkeleypse.org',
       ],
       origin
     )
