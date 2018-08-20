@@ -4,6 +4,7 @@ include mixins/_brotherForm
 include mixins/_fulltimeForm
 include mixins/_internshipForm
 include mixins/_userForm
+include mixins/_coffeeChatForm
 include mixins/_registrationForm
 include mixins/_applicationForm
 
@@ -41,6 +42,10 @@ block content
         h2 Users &gt; #{data.name}
         +userForm(data || {}, true)
       
+      if type==='coffee-chat'
+        h2 Coffee Chats &gt; #{data.name}
+        +coffeeChatForm(data || {})
+
       if type==='regforms'
         h2 Registrations &gt; #{data.name}
         +registrationForm(data || {})

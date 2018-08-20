@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Rahul Rangnekar",
+    "email": "rrangnekar@berkeley.edu",
+    "availability1": "Monday, Aug 20 between 10am and 2pm",
+    "availability2": "Tuesday, Aug 21 before 8am",
+    "availability3": "Saturday, Aug 26 after 11pm",
+    "brotherPreferences": "Kyle, Tim, Varsha S.",
+    "aboutYou": "I don't hang out with my family. This is the best time I can see them."
+  },
+  {
+    "name": "Taylor Lee",
+    "email": "taylor@starbucks.com",
+    "availability1": "Wednesday, Aug 22 after 5pm",
+    "brotherPreferences": "Sean Yu",
+    "aboutYou": "I brew coffee and love accounting, running, and saving our national parks!"
+  }
+]

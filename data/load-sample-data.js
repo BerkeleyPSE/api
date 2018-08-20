@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGO_URI);
 const Brother = require('../models/Brother');
 const Fulltime = require('../models/Fulltime');
 const Internship = require('../models/Internship');
+const CoffeeChat = require('../models/CoffeeChat');
 const Regform = require('../models/Regform');
 const Application = require('../models/Application');
 
@@ -18,6 +19,9 @@ const fulltimes = JSON.parse(
 );
 const internships = JSON.parse(
   fs.readFileSync(__dirname + '/internships.json', 'utf-8')
+);
+const coffeeChats = JSON.parse(
+  fs.readFileSync(__dirname + '/coffeeChat.json', 'utf-8')
 );
 const regforms = JSON.parse(
   fs.readFileSync(__dirname + '/regforms.json', 'utf-8')
@@ -47,6 +51,7 @@ async function loadData(name, data, model) {
     await deleteData('brothers', Brother);
     await deleteData('fulltime careers', Fulltime);
     await deleteData('intern careers', Internship);
+    await deleteData('coffee chat forms', CoffeeChat);
     await deleteData('registration forms', Regform);
     await deleteData('application forms', Application);
     process.exit();
@@ -54,6 +59,7 @@ async function loadData(name, data, model) {
     await loadData('brothers', brothers, Brother);
     await loadData('fulltime careers', fulltimes, Fulltime);
     await loadData('intern careers', internships, Internship);
+    await loadData('coffee chat forms', CoffeeChat);
     await loadData('registration forms', regforms, Regform);
     await loadData('application forms', applications, Application);
     process.exit();
@@ -69,6 +75,10 @@ async function loadData(name, data, model) {
     if (process.argv.includes('--delete'))
       await deleteData('intern careers', Internship);
     else await loadData('intern careers', internships, Internship);
+  } else if (process.argv.includes('--coffee')) {
+    if (process.argv.includes('--delete'))
+      await deleteData('coffee chat forms', CoffeeChat);
+    else await loadData('coffee chat forms', coffeeChats, CoffeeChat);
   } else if (process.argv.includes('--regforms')) {
     if (process.argv.includes('--delete'))
       await deleteData('registration forms', Regform);

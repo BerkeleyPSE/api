@@ -4,6 +4,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const expressValidator = require('express-validator');
 const path = require('path');
+const cors = require('cors');
 
 // local
 const helpers = require('./helpers');
@@ -17,6 +18,7 @@ const authRoutes = require('./routes/auth');
 const brotherRoutes = require('./routes/brother');
 const fulltimeRoutes = require('./routes/fulltime');
 const internshipRoutes = require('./routes/internship');
+const coffeeChatRoutes = require('./routes/coffeeChat');
 const regformRoutes = require('./routes/regform');
 const applicationRoutes = require('./routes/application');
 
@@ -34,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// exposes a bunch of methods for validating data // TODO: do i need this?
+// exposes a bunch of methods for validating data
 app.use(expressValidator());
 
 // cookies
@@ -59,6 +61,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// enable CORS for submitting forms from localhost:3000 & www.berkeleypse.org
+const corsObj = {
+  origin: 'http://localhost:3000',
+  methods: 'POST',
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept']
+};
+
+app.options('/coffee-chat/add', cors(corsObj));
+app.options('/regforms/add', cors(corsObj));
+app.options('/applications/add', cors(corsObj));
+
 // after all middleware, handle own routes
 app.use('/', indexRoutes);
 app.use('/users', userRoutes);
@@ -66,6 +79,7 @@ app.use('/auth', authRoutes);
 app.use('/brothers', brotherRoutes);
 app.use('/fulltimes', fulltimeRoutes);
 app.use('/internships', internshipRoutes);
+app.use('/coffee-chat', coffeeChatRoutes);
 app.use('/regforms', regformRoutes);
 app.use('/applications', applicationRoutes);
 
@@ -78,5 +92,4 @@ if (app.get('env') === 'development') app.use(errorHandlers.developmentErrors);
 // production error handler
 app.use(errorHandlers.productionErrors);
 
-// done! export the app!
 module.exports = app;

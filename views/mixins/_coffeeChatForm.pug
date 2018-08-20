@@ -1,0 +1,38 @@
+mixin coffeeChatForm(coffeeChat)
+  form.form
+
+    .form-group
+      label(for="mongoId") Database ID
+      input.form-control(type="text" id="mongoId" value=coffeeChat._id readonly)
+    
+    .form-group
+      label(for="name") Name
+      input.form-control(type="text" name="name" id="name" value=coffeeChat.name required disabled)
+
+    .form-group
+      label(for="email") Email
+      input.form-control(type="email" name="email" id="email" value=coffeeChat.email required disabled)
+
+    .form-group
+      label(for="availability1") Availability 1
+      input.form-control(type="text" name="availability1" id="availability1" value=coffeeChat.availability1 required disabled)
+    
+    .form-group
+      label(for="availability2") Availability 2
+      input.form-control(type="text" name="availability2" id="availability2" value=coffeeChat.availability2 disabled)
+    
+    .form-group
+      label(for="availability3") Availability 3
+      input.form-control(type="text" name="availability3" id="availability3" value=coffeeChat.availability3 disabled)
+
+    .form-group
+      label(for="brotherPreferences") Brother Preferences
+      input.form-control(type="text" name="brotherPreferences" id="brotherPreferences" value=coffeeChat.brotherPreferences disabled)
+    
+    .form-group
+      label(for="aboutYou") About Yourself
+      textarea.form-control(type="text" name="aboutYou" id="aboutYou" disabled)= coffeeChat.aboutYou
+    
+    .form-group
+      label(for="submissionTime") Submission Time
+      input.form-control(type="text" name="submissionTime" id="submissionTime" value=h.fmtDate(coffeeChat.submissionTime) required disabled)
