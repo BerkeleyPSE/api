@@ -105,29 +105,29 @@ exports.getAllExt = async (req, res) => {
   });
   const countPromise = Brother.count();
   const [brothers, count] = await Promise.all([brothersPromise, countPromise]);
-  res.json({ data: brothers, count });
+  res.status(200).json({ data: brothers, count });
 };
 
 exports.getExecutives = async (req, res) => {
-  const fields = h.getFields(req);
+  const fields = 'name _id position key';
   const executives = await Brother.find(
     { isExecutive: true, isActive: true },
     fields
   ).exec();
-  res.json({ data: executives, count: executives.length });
+  res.status(200).json({ data: executives, count: executives.length });
 };
 
 exports.getById = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) res.sendStatus(400);
   const brother = await Brother.findById(req.params.id);
   if (h.isNotValid(brother)) res.sendStatus(404);
-  res.json({ data: brother });
+  res.status(200).json({ data: brother });
 };
 
 exports.getByKey = async (req, res) => {
   const brother = await Brother.findOne({ key: req.params.key });
   if (h.isNotValid(brother)) res.sendStatus(404);
-  res.json({ data: brother });
+  res.status(200).json({ data: brother });
 };
 
 exports.filter = async (req, res) => {
