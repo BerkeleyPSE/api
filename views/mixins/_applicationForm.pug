@@ -38,9 +38,13 @@ mixin applicationForm(app)
       textarea.form-control(name="commitments" id="commitments" required disabled)= app.commitments
 
     .form-group
-      label(for="freeWeekend") What would you do in a free weekend?
-      textarea.form-control(name="freeWeekend" id="freeWeekend" required disabled)= app.freeWeekend
+      label(for="accomplishment") What is your greatest accomplishment?
+      textarea.form-control(name="accomplishment" id="accomplishment" required disabled)= app.accomplishment
 
+    .form-group
+      label(for="posContribution") Give an example of a time you made a positive contribution to a team and what was the outcome?
+      textarea.form-control(name="posContribution" id="accomplishment" required disabled)= app.posContribution
+    
     .form-group
       label(for="inviteOnly") Are you available for our Invite Only event?
       input.form-control(type="text" name="inviteOnly" id="inviteOnly" value=app.inviteOnly required disabled)
