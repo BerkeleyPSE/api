@@ -14,6 +14,7 @@ require('./models/User');
 require('./models/Brother');
 require('./models/Fulltime');
 require('./models/Internship');
+require('./models/CoffeeChat');
 require('./models/Regform');
 require('./models/Application');
 

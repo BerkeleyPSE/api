@@ -11,6 +11,7 @@ module.exports = [
   'Environmental Science',
   'EECS',
   'French',
+  'History',
   'Media Studies',
   'Political Economy',
   'Political Science',

@@ -82,7 +82,7 @@ exports.getAllExt = async (req, res) => {
     fulltimesPromise,
     countPromise
   ]);
-  res.json({ data: fulltimes, count });
+  res.status(200).json({ data: fulltimes, count });
 };
 
 exports.filter = async (req, res) => {
@@ -94,5 +94,5 @@ exports.filter = async (req, res) => {
   if (h.isValid(location)) search = { ...search, location };
   if (h.isValid(gradYear)) search = { ...search, gradYear };
   const fulltimes = await Fulltime.find(search).sort({ name: 1 });
-  res.json({ data: fulltimes, count: fulltimes.length });
+  res.status(200).json({ data: fulltimes, count: fulltimes.length });
 };

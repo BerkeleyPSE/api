@@ -36,6 +36,5 @@ exports.deleteById = async (req, res) => {
 
 exports.create = async (req, res) => {
   await new Regform(req.body).save();
-  return res.render('formResponse', { name: req.body.name });
-  // return res.redirect(`${h.BASE_RETURN_URL}/app`);
+  res.sendStatus(201);
 };
