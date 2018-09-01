@@ -51,7 +51,13 @@ const ApplicationSchema = new mongoose.Schema({
     trim: true
   },
 
-  freeWeekend: {
+  accomplishment: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  
+  posContribution: {
     type: String,
     required: true,
     trim: true
