@@ -34,16 +34,12 @@ mixin applicationForm(app)
       input.form-control(type="text" name="minor" id="minor" value=app.minor disabled)
 
     .form-group
-      label(for="commitments") Commitments
-      textarea.form-control(name="commitments" id="commitments" required disabled)= app.commitments
+      label(for="introduction") Introduction
+      textarea.form-control(name="introduction" id="introduction" required disabled)= app.introduction
 
     .form-group
-      label(for="accomplishment") What is your greatest accomplishment?
-      textarea.form-control(name="accomplishment" id="accomplishment" required disabled)= app.accomplishment
-
-    .form-group
-      label(for="posContribution") Give an example of a time you made a positive contribution to a team and what was the outcome?
-      textarea.form-control(name="posContribution" id="posContribution" required disabled)= app.posContribution
+      label(for="moment") What is your greatest moment?
+      textarea.form-control(name="moment" id="moment" required disabled)= app.moment
     
     .form-group
       label(for="inviteOnly") Are you available for our Invite Only event?
