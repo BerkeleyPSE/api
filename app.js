@@ -63,7 +63,10 @@ app.use((req, res, next) => {
 
 // enable CORS for submitting forms from localhost:3000 & www.berkeleypse.org
 const corsObj = {
-  origin: 'http://localhost:3000',
+  origin:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'http://www.berkeleypse.org',
   methods: 'POST',
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept']
 };

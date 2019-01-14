@@ -36,4 +36,4 @@ exports.BASE_URL =
 exports.BASE_RETURN_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'http://berkeleypse.org';
+    : 'http://www.berkeleypse.org';
