@@ -14,6 +14,7 @@ module.exports = [
   'Corporate Law',
   'Data Analysis',
   'Digital Marketing',
+  'Entrepreneurship',
   'Environmental Consulting',
   'Finance',
   'Financial Services',
@@ -39,6 +40,6 @@ module.exports = [
   'Strategy Consulting',
   'Tax M&A',
   'Technology Consulting',
-  'UX Design',
+  'UI/UX Design',
   'Wholesale Credit'
 ];
