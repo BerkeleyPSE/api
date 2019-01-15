@@ -27,6 +27,7 @@ module.exports = [
   'Management Consulting',
   'Marketing',
   'Marketing Strategy',
+  'Private Equity',
   'Product Design',
   'Product Management',
   'Product Marketing',
