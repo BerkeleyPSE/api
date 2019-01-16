@@ -25,7 +25,6 @@ module.exports = [
   'Human Resources Consulting',
   'Investment Banking',
   'Law',
-  'Linguistics',
   'Management Consulting',
   'Marketing',
   'Marketing Strategy',
