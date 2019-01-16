@@ -18,6 +18,7 @@ module.exports = [
   'Intended Business Administration',
   'Italian',
   'Legal Studies',
+  'Linguistics',
   'Logic',
   'Media Studies',
   'Political Economy',

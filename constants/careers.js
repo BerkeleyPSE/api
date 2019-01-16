@@ -1,6 +1,7 @@
 module.exports = [
   'N/A',
   'Accounting',
+  'Actuarial Science',
   'Advertising',
   'Brand Marketing',
   'Brand Strategy',
@@ -27,6 +28,7 @@ module.exports = [
   'Management Consulting',
   'Marketing',
   'Marketing Strategy',
+  'Private Equity',
   'Product Design',
   'Product Management',
   'Product Marketing',
@@ -39,6 +41,7 @@ module.exports = [
   'Strategy & Analytics',
   'Strategy Consulting',
   'Tax M&A',
+  'Technology and Management',
   'Technology Consulting',
   'UI/UX Design',
   'Wholesale Credit'
