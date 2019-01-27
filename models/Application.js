@@ -45,13 +45,19 @@ const ApplicationSchema = new mongoose.Schema({
     trim: true
   },
 
-  introduction: {
+  commitments: {
     type: String,
     required: true,
     trim: true
   },
 
-  moment: {
+  interest: {
+    type: String,
+    required: true,
+    trim: true
+  },
+
+  admire: {
     type: String,
     required: true,
     trim: true

@@ -33,13 +33,18 @@ mixin applicationForm(app)
       label(for="minor") Minor(s)
       input.form-control(type="text" name="minor" id="minor" value=app.minor disabled)
 
+    
     .form-group
-      label(for="introduction") Introduction
-      textarea.form-control(name="introduction" id="introduction" required disabled)= app.introduction
+      label(for="commitments") Current commitments
+      textarea.form-control(name="commitments" id="introduction" required disabled)= app.commitments
 
     .form-group
-      label(for="moment") What is your greatest moment?
-      textarea.form-control(name="moment" id="moment" required disabled)= app.moment
+      label(for="interest") Why are you interested in business?
+      textarea.form-control(name="interest" id="interest" required disabled)= app.commitments
+
+    .form-group
+      label(for="admire") Tell us about a business you admire, and why?
+      textarea.form-control(name="admire" id="admire" required disabled)= app.admire
     
     .form-group
       label(for="inviteOnly") Are you available for our Invite Only event?
