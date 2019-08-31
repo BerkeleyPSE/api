@@ -1,5 +1,6 @@
 module.exports = [
   'N/A',
+  'Academics Director',
   'Active',
   'Chapter Secretary',
   'Director of Alumni Relations',

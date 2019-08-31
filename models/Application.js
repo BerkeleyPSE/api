@@ -30,8 +30,8 @@ const ApplicationSchema = new mongoose.Schema({
   },
 
   gpa: {
-    type: String,
-    required: true
+    type: String/*,
+    required: true*/
   },
 
   major: {
@@ -45,13 +45,19 @@ const ApplicationSchema = new mongoose.Schema({
     trim: true
   },
 
-  introduction: {
+  commitments: {
     type: String,
     required: true,
     trim: true
   },
 
-  moment: {
+  interest: {
+    type: String,
+    // required: true,
+    trim: true
+  },
+
+  admire: {
     type: String,
     required: true,
     trim: true
@@ -84,6 +90,11 @@ const ApplicationSchema = new mongoose.Schema({
   hear: {
     type: String,
     required: true,
+    trim: true
+  },
+
+  gradesInfo: {
+    type: String,
     trim: true
   },
 
