@@ -33,6 +33,11 @@ mixin applicationForm(app)
       label(for="minor") Minor(s)
       input.form-control(type="text" name="minor" id="minor" value=app.minor disabled)
 
+    
+    .form-group
+      label(for="commitments") Current commitments
+      textarea.form-control(name="commitments" id="introduction" required disabled)= app.commitments
+
     .form-group
       label(for="commitments") Current commitments
       textarea.form-control(name="commitments" id="introduction" required disabled)= app.commitments
