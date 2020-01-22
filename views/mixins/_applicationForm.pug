@@ -39,8 +39,12 @@ mixin applicationForm(app)
       textarea.form-control(name="commitments" id="introduction" required disabled)= app.commitments
 
     .form-group
+      label(for="commitments") Current commitments
+      textarea.form-control(name="commitments" id="introduction" required disabled)= app.commitments
+
+    .form-group
       label(for="interest") Why are you interested in business?
-      textarea.form-control(name="interest" id="interest" required disabled)= app.interest
+      textarea.form-control(name="interest" id="interest" required disabled)= app.commitments
 
     .form-group
       label(for="admire") Tell us about a business you admire, and why?
